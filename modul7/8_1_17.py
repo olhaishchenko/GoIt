@@ -19,14 +19,20 @@ def number_str(s):
         # list_s.append(new_element)
         dict_number[start_index] = new_element
     return dict_number
-
-def token_parser(s):
-    list_example = []
-    if len(s.strip())==0:
-        return list_example
+def dict_string(s):
     dict_symbol = symbol(s)
     dict_number = number_str(s)
     dict_symbol.update(dict_number)
-    print(dict_symbol)
+    return dict_symbol
+
+def token_parser(s):
+    s=s.strip()
+    list_example = []
+    dict_s = dict_string(s)
+    if len(s)==0:
+        return list_example
+    for i in range(len(s)):
+        if i in dict_s.keys():
+            list_example.append(dict_s[i])
     return list_example
 print(token_parser('2+ (3 -  5) *4 - 5 * 3'))
