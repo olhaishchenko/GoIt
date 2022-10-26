@@ -8,17 +8,17 @@
 def token_parser(s):
     s=s.replace(' ','')
     list_s = []
-    begin = 0
-    for count, char in enumerate(s):
+    number_s = ''
+    for char in s:
         if char in ('+', '-', '*', '/', ')', '('):
+            list_s.append(number_s)
             list_s.append(char)
+            number_s = ''
         else:
-            if count > begin:
-
-        elif char.isdigit():
-
+            number_s += char
+    return list_s
         
 print(token_parser("2+ 34-5 * 32"))
 print(token_parser("   "))
-print(token_parser('(2+ 3) *4 - 5 * 3'))
-print(token_parser('2+ (3 -  5) *4 - 5 * 3'))
+print(token_parser('(2+ 35) *4 - 5 * 3'))
+print(token_parser('2+ (36 -  5) *4 - 65 * 3'))
