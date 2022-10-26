@@ -16,6 +16,8 @@ def token_parser(s):
             number_s = ''
         else:
             number_s += char
+    
+    list_s.append(number_s)
     return list_s
         
 print(token_parser("2+ 34-5 * 32"))
