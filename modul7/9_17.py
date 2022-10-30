@@ -18,14 +18,15 @@
 # Функція all_sub_lists повинна повертати щонайменше один список з
 #  порожнім підсписком [[]].
 def all_sub_lists(data):
-    sub_list = []
-    all_sub_list = [sub_list,]
-    start_sub_list = 0
-    start_step = 1
-    for i in range(1, len(data)):
-        sub_list.append(data[i])
-    print(sub_list)
-    all_sub_list.extend(sub_list)
+    all_sub_list = []
+    all_sub_list.append([])
+    for j in range(0, len(data)):
+        for i in range(0, len(data)):
+            if i+j < len(data)+1 and i != (i + j):
+                print(data[i:i+j], i, i+j)
+                all_sub_list.append(data[i:i+j])
+    if len(data) != 0:
+        all_sub_list.append(data)
 
     return all_sub_list
 

@@ -20,14 +20,14 @@ def capital_text(s):
     #     l=l+item
     #     print(item)
     # print(l)
-    senteces=[]
+    senteces = []
     start = 0
     new_text = ''
     for m in re.finditer(r'\.|\?|\! *\b', s):
-        end=m.start()+1
+        end = m.start()+1
         senteces.append(s[start:end])
         start = end+1
-    if end!=len(s):
+    if end != len(s):
         senteces.append(s[start:len(s)+1])
     
     for element in senteces:

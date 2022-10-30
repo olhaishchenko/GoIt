@@ -17,12 +17,12 @@ def solve_riddle(riddle, word_length, start_letter, reverse=False):
     
     start = str(riddle).find(start_letter)
     if start == -1:
-        word=''
+        word = ''
     elif not reverse:
         word = riddle[start:start+word_length]
     else:
         word = riddle[start:start-word_length:-1]       
     return word
 # ('aaatttrrr', 5, 'p', True) поверне наступну строку '' 
-print(solve_riddle('aaatttrrr', 5, 'p', True))   
+print(solve_riddle('aaatttrrr', 5, 'p', True))
   
