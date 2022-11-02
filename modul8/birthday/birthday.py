@@ -22,7 +22,8 @@ def interval_week():
     begin_interval = day_today + day
     end_interval = day_today + weeks
     print(begin_interval, end_interval)
-    return(begin_interval, end_interval)
+    return begin_interval, end_interval
+
 
 def get_birthdays_per_week():
     (first_day, last_day) = interval_week()
@@ -33,6 +34,15 @@ def get_birthdays_per_week():
         user['birthday'] = user['birthday'].replace(year=2022)
         if begin_week < user['birthday'].timetuple().tm_yday < end_week:
             week_birthday[user['birthday'].strftime('%A')] = user['name']
+    user_Monday = []
+    for user_birth_key, user_birth_value in week_birthday.items():
+        if user_birth_key in ('Monday', 'Saturday', 'Sunday'):
+            user_Monday.append(user_birth_value)
+    week_birthday.pop(week_birthday['Monday'])
+            # week_birthday.pop(user_birth_key)
+
+        # week_birthday['Monday'] = user_Monday
+
     print(week_birthday)
 
 
