@@ -39,20 +39,23 @@ def get_birthdays_per_week():
                     begin_interval.strftime('%m') == item['birthday'].strftime('%m'):
                 if begin_interval.strftime('%A') not in week_birthday.keys():
                     if begin_interval.strftime('%A') not in ('Saturday', 'Sunday'):
-                        week_birthday[begin_interval.strftime('%A')] = item['name']
+                        week_birthday[begin_interval.strftime('%A')] = [item['name']]
+                    else:
+                        week_birthday['Monday'] = [item['name']]
                 elif begin_interval.strftime('%A') not in ('Saturday', 'Sunday'):
-                    user_day.append(week_birthday[begin_interval.strftime('%A')])
-                    user_day.append(item['name'])
-                    week_birthday[begin_interval.strftime('%A')] = user_day
-                    user_day = []
-                elif begin_interval.strftime('%A') == ('Saturday' or 'Sunday'):
+                    week_birthday[begin_interval.strftime('%A')].append(item['name'])
+                #     user_day.append(week_birthday[begin_interval.strftime('%A')])
+                #     user_day.append(item['name'])
+                #     week_birthday[begin_interval.strftime('%A')] = user_day
+                #     user_day = []
+
                     if 'Monday' in week_birthday.keys():
                         user_day.append(week_birthday['Monday'])
                         user_day.append(item['name'])
                         week_birthday['Monday'] = user_day
                         user_day = []
-                    else:
-                        week_birthday['Monday'] = item['name']
+                    # else:
+                    #     week_birthday['Monday'] = item['name']
                # print( begin_interval.strftime('%A'), user['name'])
         i += 1
         begin_interval += day
