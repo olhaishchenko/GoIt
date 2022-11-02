@@ -31,16 +31,18 @@ def get_birthdays_per_week():
                         week_birthday['Monday'].append(item['name'])
                 elif begin_interval.strftime('%A') not in ('Saturday', 'Sunday'):
                     week_birthday[begin_interval.strftime('%A')].append(item['name'])
-
-        i += 1
         begin_interval += day
+    return week_birthday
 
+
+def print_birthday_per_week(dict_user):
+    day_today = datetime.today().date()
+    day = timedelta(days=1)
     begin_interval = day_today + day
     for i in range(7):
-        if begin_interval.strftime('%A') in week_birthday.keys():
-            print(f'{begin_interval.strftime("%A")}: {", ".join(week_birthday[begin_interval.strftime("%A")])}')
+        if begin_interval.strftime('%A') in dict_user.keys():
+            print(f'{begin_interval.strftime("%A")}: {", ".join(dict_user[begin_interval.strftime("%A")])}')
         begin_interval += day
-        i += 1
 
-get_birthdays_per_week()
+print_birthday_per_week(get_birthdays_per_week())
 
