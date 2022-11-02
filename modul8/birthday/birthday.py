@@ -50,10 +50,11 @@ def get_birthdays_per_week():
                 #     user_day = []
 
                     if 'Monday' in week_birthday.keys():
-                        user_day.append(week_birthday['Monday'])
-                        user_day.append(item['name'])
-                        week_birthday['Monday'] = user_day
-                        user_day = []
+                        week_birthday['Monday'].append(item['name'])
+                        # user_day.append(week_birthday['Monday'])
+                        # user_day.append(item['name'])
+                        # week_birthday['Monday'] = user_day
+                        # user_day = []
                     # else:
                     #     week_birthday['Monday'] = item['name']
                # print( begin_interval.strftime('%A'), user['name'])
