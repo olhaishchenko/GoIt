@@ -1,8 +1,5 @@
-import re
-
-
-def hello(text: str):
-    print("How can I help you?")
+def hello(text):
+    return "How can I help you?"
 
 
 kontakt_number = {}
@@ -12,25 +9,30 @@ def add_phone(name_phone: list):
     number_phone = name_phone[1]
     name = name_phone[0]
     kontakt_number[name] = number_phone
+    return "Number added"
 
 
-def change(text: str):
-    number_phone = re.findall(r"\d+", text)
-    name = re.findall(r"\w+", text)
-    kontakt_number[name] = number_phone
+def change(name_phone: list):
+    number_phone = name_phone[1]
+    name = name_phone[0]
+    l = kontakt_number[name]  # перевірка існування ім'я
+    for char in filter(lambda value: value == name, kontakt_number.keys()):
+        kontakt_number[name] = number_phone
+    return "Numer changed"
 
 
 def phone(text: str):
-    name = re.findall(r"\w+", text)
-    print(kontakt_number[name])
+    name = text[0]
+    l = kontakt_number[name]  # перевірка існування ім'я
+    return kontakt_number[name]
 
 
 def show_all(text: str):
-    print(kontakt_number)
+    return kontakt_number
 
 
 def good_bye(text: str):
-    print("Good bye")
+    return "Good bye"
     exit(0)
 
 
@@ -39,8 +41,8 @@ INPUT_HANDLER = {
     "add": add_phone,
     "change": change,
     "phone": phone,
-    "show_all": show_all,
-    "good bye": good_bye,
+    "show": show_all,
+    "good": good_bye,
     "close": good_bye,
     "exit": good_bye
 }
@@ -55,7 +57,7 @@ def input_error(func):
         except KeyError:
             print("Enter: add_name_phone, change_name_phone, phone_name, show all, good bye, close, exit to continue")
         except ValueError:
-            print("Enter user name")
+            print("Enter right user name")
     return wrapper
 
 
@@ -69,8 +71,8 @@ def call_handler(text: str):
 def main():
     while True:
         text = input("Hello, input command: ").lower()
-        call_handler(text)
-        print(kontakt_number)
+        print(call_handler(text))
+
 
 
 if __name__ == "__main__":
