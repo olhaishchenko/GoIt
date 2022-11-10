@@ -8,9 +8,9 @@ def hello(text: str):
 kontakt_number = {}
 
 
-def add_phone(text: str):
-    number_phone = re.findall(r"\d+", text)
-    name = re.findall(r"\w+", text)
+def add_phone(name_phone: list):
+    number_phone = name_phone[1]
+    name = name_phone[0]
     kontakt_number[name] = number_phone
 
 
@@ -46,8 +46,9 @@ INPUT_HANDLER = {
 }
 
 
-def input_handler(text: str):
+def input_lower(text: str):
     text_new = text.lower()
+    return text_new
 
 
 def input_error(func):
@@ -56,18 +57,22 @@ def input_error(func):
             func(text)
         except:
             print("Input username")
-
     return wrapper
 
 
 @input_error
+@input_lower
 def call_handler(text: str):
-    INPUT_HANDLER[text](text)
+    list_text = text.split(' ')
+    if list_text[0] in INPUT_HANDLER:
+        INPUT_HANDLER[list_text[0]](list_text[1:])
+
 
 def main():
     while True:
         text = input("Hello, input command: ")
         call_handler(text)
+
 
 if __name__ == "__main__":
     main()
