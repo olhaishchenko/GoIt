@@ -46,22 +46,20 @@ INPUT_HANDLER = {
 }
 
 
-def input_lower(text: str):
-    text_new = text.lower()
-    return text_new
-
-
 def input_error(func):
     def wrapper(text):
         try:
             func(text)
-        except:
-            print("Input username")
+        except IndexError:
+            print("Give me name and phone please splitted by space")
+        except KeyError:
+            print("Enter: add_name_phone, change_name_phone, phone_name, show all, good bye, close, exit to continue")
+        except ValueError:
+            print("Enter user name")
     return wrapper
 
 
 @input_error
-@input_lower
 def call_handler(text: str):
     list_text = text.split(' ')
     if list_text[0] in INPUT_HANDLER:
@@ -70,8 +68,9 @@ def call_handler(text: str):
 
 def main():
     while True:
-        text = input("Hello, input command: ")
+        text = input("Hello, input command: ").lower()
         call_handler(text)
+        print(kontakt_number)
 
 
 if __name__ == "__main__":
