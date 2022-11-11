@@ -8,7 +8,7 @@ kontakt_number = {}
 
 def add_phone(name_phone: list):
     number_phone = int(name_phone[1])
-    name = name_phone[0]
+    name = name_phone[0].capitalize()
 
     kontakt_number[name] = number_phone
     text_output = "Number added"
@@ -17,7 +17,7 @@ def add_phone(name_phone: list):
 
 def change(name_phone: list):
     number_phone = int(name_phone[1])
-    name = name_phone[0]
+    name = name_phone[0].capitalize()
     kontakt_number[name]  # перевірка існування ім'я
     for char in filter(lambda value: value == name, kontakt_number.keys()):
         kontakt_number[name] = number_phone
@@ -26,7 +26,7 @@ def change(name_phone: list):
 
 
 def phone(text: str):
-    name = text[0]
+    name = text[0].capitalize()
     kontakt_number[name]  # перевірка існування ім'я
     return kontakt_number[name]
 
@@ -34,11 +34,15 @@ def phone(text: str):
 def show_all(text: list):
     if text[0] == 'all' and len(text) == 1:
         return kontakt_number
+    else:
+        kontakt_number[1] # штучна помилка
 
 
 def good_bye(text: list):
     if text[0] == 'bye':
         exit("Good bye")
+    else:
+        kontakt_number[1] # штучна помилка
 
 
 def bye():
@@ -64,7 +68,7 @@ def input_error(func):
         except IndexError:
             print("Give me name and phone please splitted by space")
         except KeyError:
-            print("Enter right user name or user number or command")
+            print("Enter right user's name or user's number or command")
         except ValueError:
             print("Enter: add (name phone), change (name phone), \
 phone (name), show all, good bye, close, exit to continue")
