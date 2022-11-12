@@ -33,15 +33,16 @@ def phone(text: str):# функція видає номер телефону з�
 def show_all(text: list):# функція видає весь список телефонів
     if text[0] == 'all' and len(text) == 1:
         return kontakt_number
-    else:
-        kontakt_number[1] # штучна помилка
+    # штучна помилка
+    raise KeyError
+
 
 # функції прощавання)
 def good_bye(text: list):
     if text[0] == 'bye':
         exit("Good bye")
-    else:
-        kontakt_number[1] # штучна помилка
+    # штучна помилка
+    raise KeyError
 
 
 def bye():
@@ -65,16 +66,16 @@ def input_error(func):
         try:
             return func(text)
         except IndexError:
-            print("Give me name and phone please splitted by space")
+            result = "Give me name and phone please splitted by space"
         except KeyError:
-            print("Enter right user's name or user's number or command")
+            result = "Enter right user's name or user's number or command"
         except ValueError:
-            print("Enter: add (name phone), change (name phone), \
-phone (name), show all, good bye, close, exit to continue")
+            result = "Enter: add (name phone), change (name phone), \
+phone (name), show all, good bye, close, exit to continue"
         except TypeError:
-            print("Enter: add (name phone), change (name phone), \
-phone (name), show all, good bye, close, exit to continue")
-
+            result = "Enter: add (name phone), change (name phone), \
+phone (name), show all, good bye, close, exit to continue"
+        return result
     return wrapper
 
 
