@@ -85,33 +85,53 @@ class CLIAddressBook:
         print('Hello to the AddressBook CLI tool\n')
         while True:
             command = input('Enter command: ')
-            if command == 'create':
-                name = input('Enter name: ')
-                self.book.add_record(name)
-            elif command == 'list':
-                print(self.book)
-            elif command == 'find':
-                name = input('Enter name: ')
-                print(self.book[name])
+            # create name - if command start with prefix `create` then create a new record in the AddressBook with "name" value
+            if command.startswith('create'):
+                name = command.split(' ')[1]
+                self.handler_create(name)
+            elif command.startswith('list'):
+                self.handler_list()
+            elif command.startswith('find'):
+                name = command.split(' ')[1]
+                self.handler_find(name)
             elif command == 'exit':
-                break
+                print('Bye!')
+                exit(0)
             elif command == 'help':
-                print('create, list, find, exit, help, add, change, delete')
-            elif command == 'add':
-                name = input('Enter name: ')
-                phone = input('Enter phone: ')
-                self.book[name].add_phone(phone)
-            elif command == 'change':
-                name = input('Enter name: ')
-                phone_old = input('Enter old phone: ')
-                phone_new = input('Enter new phone: ')
-                self.book[name].change_phone(phone_old, phone_new)
-            elif command == 'delete':
-                name = input('Enter name: ')
-                phone = input('Enter phone: ')
-                self.book[name].del_phone(phone)
+                self.print_help()
+            elif command.startswith('add'):
+                name, phone = command.split(' ')[1:]
+                self.handler_add(name, phone)
+            elif command.startswith('change'):
+                name, phone_old, phone_new = command.split(' ')[1:]
+                self.handler_change(name, phone_old, phone_new)
+            elif command.startswith('delete'):
+                name, phone = command.split(' ')[1:]
+                self.handler_delete(name, phone)
             else:
                 print('Unknown command')
+
+    def print_help(self):
+        print('create, list, find, exit, help, add, change, delete')
+
+    def handler_create(self, name):
+        self.book.add_record(name)
+
+    def handler_list(self):
+        print(self.book)
+
+    def handler_find(self, name):
+        print(self.book[name])
+
+    def handler_add(self, name, phone):
+        self.book[name].add_phone(phone)
+
+    def handler_change(self, name, phone_old, phone_new):
+        self.book[name].change_phone(phone_old, phone_new)
+
+    def handler_delete(self, name, phone):
+        self.book[name].del_phone(phone)
+
 
 def main():
     cli = CLIAddressBook()
