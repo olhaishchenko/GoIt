@@ -17,7 +17,6 @@
 
 from collections import UserDict
 
-
 class AddressBook(UserDict):
     def add_record(self, record):
         self.data[record.name.value] = self.record
@@ -25,11 +24,6 @@ class AddressBook(UserDict):
 
 class Field:
     pass
-
-
-class Phone(Field):
-    def __init__(self, phone):
-        self.phone = phone
 
 
 class Record:
@@ -49,7 +43,7 @@ class Record:
 
 class Name(Field):
     def __init__(self, name):
-        self.value = name
+        self.value = name.capitalize()
 
 
 class Phone(Field):
