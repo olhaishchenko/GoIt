@@ -6,11 +6,18 @@ class AddressBook(UserDict):
     def add_record(self, name):
         self.data[name] = Record(name)
 
-    # def __str__(self):
-    #     return f'{self.data}'
-    #
-    # def __repr__(self):
-    #     return f'{self.data}'
+    def exist(self, name):
+        return name in self.data
+
+    def check_record(self, name):
+        if not self.exist:
+            raise ValueError(f"Contact {name} not exists. Create contact")
+
+    def __str__(self):
+        return f'{self.data}'
+
+    def __repr__(self):
+        return f'{self.data}'
 
 
 class Field:
@@ -30,15 +37,13 @@ class Record:
         self.phones[self.phones.index(Phone(phone_old))] = Phone(phone_new)
 
     def del_phone(self, phone_old):
-        for phone in self.phones:
-            if phone_old == phone:
-                self.phones.remove(Phone(phone_old))
+        self.phones.remove(Phone(phone_old))
 
-    # def __str__(self):
-    #     return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}'
-    #
-    # def __repr__(self):
-    #     return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}'
+    def __str__(self):
+        return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}'
+
+    def __repr__(self):
+        return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}'
 
 
 class Name(Field):
@@ -61,3 +66,6 @@ class Phone(Field):
 
     def __repr__(self):
         return self.phone
+
+    def __eq__(self, other):
+        return self.phone == other.phone
