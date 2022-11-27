@@ -1,110 +1,57 @@
-from collections import UserDict
+from AdressBook_Record import AddressBook
 
-
-class AddressBook(UserDict):
-    # адресна книга з контактами
-    def add_record(self, name):
-        self.data[name] = Record(name)
-
-
-class Field:
-    pass
-
-
-class Record:
-    # клас запис: видаляє, додає, змінює контакт
-    def __init__(self, name):
-        self.name = Name(name)
-        self.phones = []
-
-    def add_phone(self, phone_new):
-        self.phones.append(Phone(phone_new))
-
-    def change_phone(self, phone_old, phone_new):
-        self.phones[self.phones.index(Phone(phone_old))] = Phone(phone_new)
-
-    def del_phone(self, phone_old):
-        self.phones.remove(Phone(phone_old))
-
-    # def get_phone(text: str):  # функція видає номер телефону за імям
-    #     name = text[0].capitalize()
-    #     kontakt_number[name]  # перевірка існування ім'я, штучна помилка
-    #     return kontakt_number[name]
-
-
-class Name(Field):
-    def __init__(self, name):
-        self.value = name
-
-
-class Phone(Field):
-    def __init__(self, phone):
-        self.phone = phone
+new_book = AddressBook()
 
 
 def hello():# функція привітання
-    text_output = "How can I help you?"
-    return text_output
+    return f"How can I help you?\nEnter: \n'add name phones' (додаємо ім'я та номери телефонів)\n\
+    'change name phone_old phone_new' (міняє старий номер телефона на новий)\n\
+    phone (name), show to continue;\n\
+     good bye, close, exit to exit"
 
 
-def create_new_contact(name_phone):
+def add_phone_func(text):# функція додає номер або номери телефонів
+    name, phones = create_data(text)
+    for phone in phones:
+        new_book[name].add_phone(phone)
+    return f"Number added"
+
+
+def change_phone_func(name_phone: list):# функція змінює номер телефону
+    number_phone_old = int(name_phone[1])
+    number_phone_new = int(name_phone[2])
     name = name_phone[0]
-    new_record = Record(name)
-    new_book.add_record(new_record)
-    print('hhgg')
-
-
-def add_phone(name_phone: list):# функція додає номер телефону
-    number_phone = Phone(int(name_phone[1]))
-    name = Name(name_phone[0])
-    new_book[name.value].add_phone(number_phone)
-    text_output = "Number added"
-    return text_output
-
-
-def change(name_phone: list):# функція змінює номер телефону
-    number_phone = int(name_phone[1])
-    name = name_phone[0].capitalize()
     new_book[name]  # перевірка існування ім'я, штучна помилка
     for char in filter(lambda value: value == name, new_book.keys()):
-        new_book[name] = number_phone
-    text_output = "Numer changed"
-    return text_output
+        new_book[name].change_phone(number_phone_old, number_phone_new)
+    return f"Number changed"
 
 
 def get_phone(text: str):# функція видає номер телефону за імям
     name = text[0].capitalize()
+    number_phone = int(text[1])
     new_book[name]  # перевірка існування ім'я, штучна помилка
     return new_book[name]
 
 
 def show_all(text: list):# функція видає весь список телефонів
     if text[0] == 'all' and len(text) == 1:
-        return new_book
+        return new_book.data.items()
     # штучна помилка
     raise KeyError
 
 
 # функції прощавання)
-def good_bye(text: list):
-    if text[0] == 'bye':
-        exit("Good bye")
-    # штучна помилка
-    raise KeyError
-
-
 def bye():
     exit("Good bye")
 
 # словник функцій
 INPUT_HANDLER = {
     "hello": hello,
-    "create": create_new_contact,
-    "add": add_phone,
-    "change": change,
+    "add": add_phone_func,
+    "change": change_phone_func,
     "del_phone": get_phone,
     "show": show_all,
-    "good": good_bye,
     "close": bye,
     "exit": bye
 }
@@ -120,7 +67,7 @@ def input_error(func):
             result = "Enter right user's name or user's number or command"
         except ValueError:
             result = "Enter: add (name phone), change (name phone), \
-phone (name), show all, good bye, close, exit to continue"
+phone (name), show all to continue; good bye, close, exit to exit"
         except TypeError:
             result = "Enter: add (name phone), change (name phone), \
 phone (name), show all, good bye, close, exit to continue"
@@ -130,19 +77,44 @@ phone (name), show all, good bye, close, exit to continue"
 
 @input_error
 def call_handler(text: str):
-    list_text = text.split(' ') #розбиваємо текст
-    if len(list_text) == 1:
-        return INPUT_HANDLER[list_text[0]]()#визиваємо функції без аргументів
+    new_text = text
+    list_text = ''
+    for key in INPUT_HANDLER:
+        if text.strip().lower().startswith(key):
+            new_text = key
+            list_text = text[len(key):]
+            break
+    if list_text:
+        return INPUT_HANDLER[new_text](list_text)#визиваємо функції з аргументами
     else:
-        return INPUT_HANDLER[list_text[0]](list_text[1:])##визиваємо функції з аргументами
+        return INPUT_HANDLER[new_text]()#визиваємо функції без аргументів
+
+
+def create_data(text):
+    """
+    Розділяє вхідні дані на дві частини - номер і телефон.
+    Також ці данні проходять валідацію.
+    Для подальшої роботи з ними.
+    :param data: Строка з номером і ім'ям.
+    :return: Вже розділені ім'я і номер
+    """
+    name, *phones = text.strip().split(' ')
+
+    if name.isnumeric():
+        raise ValueError('Wrong name.')
+    for phone in phones:
+        if not phone.isnumeric():
+            raise ValueError('Wrong phones.')
+    return name, phones
 
 
 def main():
+    hello()
     while True:
-        text = input("Hello, input command: ").lower()
+        text = input("Hello, input command: ")
         print(call_handler(text))
 
 
+new_book = AddressBook()
 if __name__ == "__main__":
-    new_book = AddressBook()
     main()
