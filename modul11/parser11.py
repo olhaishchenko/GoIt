@@ -15,6 +15,7 @@
 # setter та getter логіку для атрибутів value спадкоємців Field.
 # Перевірку на коректність веденого номера телефону setter для value класу Phone.
 # Перевірку на коректність веденого дня народження setter для value класу Birthday.
+import datetime
 
 from AdressBook_Record import AddressBook, Record
 
@@ -48,6 +49,12 @@ def add_phone_func(text):  # функція додає номер або ном�
     return f"Number added"
 
 
+def add_birthday(text):
+    name, day = create_data(text)
+    bday = datetime.datetime.strptime(str(day[-1]), "%d.%m.%Y")
+    address_book[name].add_birthday(bday)
+
+
 def change_phone_func(text):  # функція змінює номер телефону
     name, phones = create_data(text)
     if len(phones) < 2:
@@ -79,7 +86,7 @@ def show_all():  # функція видає весь список телефо�
     return address_book.data.items()
 
 
-# функції прощавання)
+# функції прощавання
 def bye():
     exit("Good bye")
 
@@ -94,7 +101,8 @@ INPUT_HANDLER = {
     "phone": get_phone,
     "show": show_all,
     "close": bye,
-    "exit": bye
+    "exit": bye,
+    "birthday": add_birthday
 }
 
 
@@ -142,13 +150,18 @@ def create_data(text):
     :return: Вже розділені ім'я і номер
     """
     name, *phones = text.strip().split(' ')
-
-    if name.isnumeric():
-        raise ValueError('Wrong name.')
-    for phone in phones:
-        if not phone.isnumeric():
-            raise ValueError('Wrong phones.')
+    #
+    # if name.isnumeric():
+    #     raise ValueError('Wrong name.')
+    # for phone in phones:
+    #     if not phone.isnumeric():
+    #         raise ValueError('Wrong phones.')
     return name, phones
+
+
+address_book.add_record("olga")
+address_book["olga"].add_phone("242222")
+address_book["olga"].add_birthday(datetime.datetime.strptime('05.04.1980', '%d.%m.%Y'))
 
 
 def main():

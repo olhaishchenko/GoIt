@@ -30,7 +30,7 @@ class Record:
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
-        self.birthday = datetime(day=0, month=0, year=0000)
+        self.birthday = None
 
     def add_phone(self, phone_new):
         self.phones.append(Phone(phone_new))
@@ -41,11 +41,19 @@ class Record:
     def del_phone(self, phone_old):
         self.phones.remove(Phone(phone_old))
 
+    def add_birthday(self, b_day):
+        self.birthday = Birthday(b_day)
+
+    def days_to_birthday(self):
+        day_today = datetime.today().date()
+
+        self.birthday
+
     def __str__(self):
-        return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}'
+        return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}, {self.birthday}'
 
     def __repr__(self):
-        return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}'
+        return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}, {self.birthday.__str__()}'
 
 
 class Name(Field):
@@ -71,3 +79,14 @@ class Phone(Field):
 
     def __eq__(self, other):
         return self.phone == other.phone
+
+
+class Birthday(Field):
+    def __init__(self, birthday):
+        self.value = birthday
+
+    def __str__(self):
+        return self.value
+
+    def __repr__(self):
+        return self.value
