@@ -26,6 +26,8 @@ def hello():  # функція привітання
     return f"How can I help you?\n\
 Enter: \n'create name' (створюємо контакт)\n\
 'add name phones' (додаємо ім'я та номери телефонів)\n\
+'birthday' (додаємо ім'я день народження)\n\
+'next_birthday'(рахуємо дні до дня народження за ім'ям)\n\
 'change name phone_old phone_new' (міняє старий номер телефона на новий)\n\
 'del name phone' (видаляє номер телефону)\n\
 'phone name' (видає номер телефону за іменем)\n\
@@ -49,14 +51,14 @@ def add_phone_func(text):  # функція додає номер або ном�
     return f"Number added"
 
 
-def add_birthday(text):
+def add_birthday(text): # функція додає день народження
     name, day = create_data(text)
     bday = str(day[-1])
     address_book[name].add_birthday(bday)
     return f"birthday contact {name} added"
 
 
-def day_to_birt_func(text):
+def day_to_birt_func(text): # функція рахує дні до дня народження
     name, day = create_data(text)
     days = address_book[name].days_to_birthday()
     return days
@@ -94,7 +96,7 @@ def show_all():  # функція видає весь список телефо�
     for record in address_book.iterator():
         records += str(record) + '\n'
     return records
-    # return address_book.data.items()
+
 
 
 # функції прощавання
@@ -162,12 +164,6 @@ def create_data(text):
     :return: Вже розділені ім'я і номер
     """
     name, *phones = text.strip().split(' ')
-    #
-    # if name.isnumeric():
-    #     raise ValueError('Wrong name.')
-    # for phone in phones:
-    #     if not phone.isnumeric():
-    #         raise ValueError('Wrong phones.')
     return name, phones
 
 

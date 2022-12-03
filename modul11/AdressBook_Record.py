@@ -24,8 +24,6 @@ class AddressBook(UserDict):
                 yield records
                 records = []
                 i = 0
-        # import pdb
-        # pdb.set_trace()
         if records:
             yield records
 
@@ -119,12 +117,14 @@ class Birthday(Field):
         if not self._value:
             raise ValueError('Day of birthday not exists')
         day_today = datetime.today().date()
-        next_b_day = datetime.strptime(self._value, "%d.%m.%Y").date()
-        if day_today.month > next_b_day.month and day_today.day > next_b_day.day:
+        next_b_day = self._value.date()
+        if day_today.month > next_b_day.month:
+            next_b_day = next_b_day.replace(year=day_today.year + 1)
+        elif day_today.month == next_b_day.month and day_today.day > next_b_day.day:
             next_b_day = next_b_day.replace(year=day_today.year + 1)
         else:
             next_b_day = next_b_day.replace(year=day_today.year)
-        return (next_b_day.date()-day_today).days
+        return (next_b_day-day_today).days
 
     def __str__(self):
         return datetime.strftime(self.value, "%d.%m.%Y")
