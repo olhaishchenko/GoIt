@@ -14,6 +14,18 @@ class AddressBook(UserDict):
         if not self.exist:
             raise ValueError(f"Contact {name} not exists. Create contact")
 
+    def iterator(self, count=2):
+        records = []
+        i = 0
+        for record in self.data.values():
+            records.append(record)
+            i += 1
+            if i == count:
+                yield records
+                records = []
+                i = 0
+       if len(self.data.values()) % count != 0
+
     def __str__(self):
         return f'{self.data}'
 
@@ -33,6 +45,12 @@ class Field:
     @value.setter
     def value(self, value):
         self._value = value
+
+    def __str__(self):
+        return f'{self.value}'
+
+    def __repr__(self):
+        return f'{self.value}'
 
 
 class Record:
@@ -55,40 +73,20 @@ class Record:
         self.birthday = Birthday(b_day)
 
     def days_to_birthday(self):
-        if not self.birthday:
-            raise ValueError('Day of birthday not exists')
-        day_today = datetime.today().date()
-        next_b_day = datetime(self.birthday).date()
-        # if day_today.month > next_b_day.month and day_today.day > next_b_day.day:
-        if day_today > next_b_day:
-            next_b_day.year = day_today.year + 1
-        else:
-            next_b_day.year = day_today.year
-        return (next_b_day-day_today).days
+        return self.birthday.days_to_birthday()
 
     def __str__(self):
         return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}, {self.birthday}'
 
     def __repr__(self):
-        return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}, {self.birthday.__str__()}'
+        return f'{self.name}: {", ".join([str(phone) for phone in self.phones])}, {self.birthday}'
 
 
 class Name(Field):
-    def __init__(self, name):
-        self._value = None
-        self.value = name
-
-    def __str__(self):
-        return self.value
-
-    def __repr__(self):
-        return self.value
+    pass
 
 
 class Phone(Field):
-    def __init__(self, phone):
-        self._value = None
-        self.value = phone
 
     @Field.value.setter
     def value(self, value):
@@ -98,36 +96,35 @@ class Phone(Field):
             raise ValueError("Phone must contains 12 symbols.")
         self._value = value
 
-    def __str__(self):
-        return self.value
-
-    def __repr__(self):
-        return self.value
-
     def __eq__(self, other):
         return self.value == other.value
 
 
 class Birthday(Field):
-    def __init__(self, birthday):
-        self._value = None
-        self.value = birthday
-
     @Field.value.setter
     def value(self, value):
-        day_today = datetime.today().date()
-        b_day = datetime.strptime(str(value), "%d.%m.%Y").date()
-        if b_day > day_today:
+        day_today = datetime.today()
+        try:
+            b_day = datetime.strptime(value, "%d.%m.%Y")
+        except ValueError:
+            raise ValueError("Incorrect date format, should be `DD.MM.YYYY`")
+        if b_day.date() > day_today.date():
             raise ValueError("Birthday can't be more than current year and date.")
-        self._value = value
+        self._value = b_day
 
-    # def __gt__(self, other):
-    #     first_day = datetime.strptime(str(self.value), "%d.%m.%Y").date()
-    #     second_day = datetime.strptime(str(other), "%d.%m.%Y").date()
-    #     return first_day.month > second_day.month and first_day.day > second_day.day
+    def days_to_birthday(self):
+        if not self._value:
+            raise ValueError('Day of birthday not exists')
+        day_today = datetime.today().date()
+        next_b_day = datetime.strptime(self._value, "%d.%m.%Y").date()
+        if day_today.month > next_b_day.month and day_today.day > next_b_day.day:
+            next_b_day = next_b_day.replace(year=day_today.year + 1)
+        else:
+            next_b_day = next_b_day.replace(year=day_today.year)
+        return (next_b_day.date()-day_today).days
 
     def __str__(self):
-        return self.value
+        return datetime.strftime(self.value, "%d.%m.%Y")
 
     def __repr__(self):
-        return self.value
+        return datetime.strftime(self.value, "%d.%m.%Y")

@@ -51,8 +51,15 @@ def add_phone_func(text):  # функція додає номер або ном�
 
 def add_birthday(text):
     name, day = create_data(text)
-    bday = datetime.datetime.strptime(str(day[-1]), "%d.%m.%Y")
+    bday = str(day[-1])
     address_book[name].add_birthday(bday)
+    return f"birthday contact {name} added"
+
+
+def day_to_birt_func(text):
+    name, day = create_data(text)
+    days = address_book[name].days_to_birthday()
+    return days
 
 
 def change_phone_func(text):  # функція змінює номер телефону
@@ -83,7 +90,11 @@ def del_phone(text):
 
 
 def show_all():  # функція видає весь список телефонів
-    return address_book.data.items()
+    records = ''
+    for record in address_book.iterator():
+        records += str(record) + '\n'
+    return records
+    # return address_book.data.items()
 
 
 # функції прощавання
@@ -93,16 +104,17 @@ def bye():
 
 # словник функцій
 INPUT_HANDLER = {
-    "hello": hello,
-    "create": create_new_contact,
     "add": add_phone_func,
-    "del": del_phone,
-    "change": change_phone_func,
-    "phone": get_phone,
-    "show": show_all,
+    "birthday": add_birthday,
     "close": bye,
+    "change": change_phone_func,
+    "create": create_new_contact,
+    "del": del_phone,
     "exit": bye,
-    "birthday": add_birthday
+    "hello": hello,
+    "next_birthday": day_to_birt_func,
+    "phone": get_phone,
+    "show": show_all
 }
 
 
@@ -160,8 +172,19 @@ def create_data(text):
 
 
 address_book.add_record("olga")
-address_book["olga"].add_phone("242222")
-address_book["olga"].add_birthday(datetime.datetime.strptime('05.04.1980', '%d.%m.%Y'))
+address_book.add_record("olga1")
+address_book.add_record("olga2")
+address_book.add_record("olga3")
+address_book.add_record("olga4")
+address_book.add_record("olga5")
+address_book.add_record("olga6")
+address_book.add_record("olga7")
+address_book.add_record("olga8")
+address_book.add_record("olga9")
+address_book.add_record("olga10")
+
+address_book["olga"].add_phone("242222000000")
+address_book["olga"].add_birthday('05.04.1980')
 
 
 def main():
