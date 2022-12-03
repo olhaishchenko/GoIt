@@ -14,7 +14,7 @@ class AddressBook(UserDict):
         if not self.exist:
             raise ValueError(f"Contact {name} not exists. Create contact")
 
-    def iterator(self, count=2):
+    def iterator(self, count=3):
         records = []
         i = 0
         for record in self.data.values():
@@ -24,7 +24,10 @@ class AddressBook(UserDict):
                 yield records
                 records = []
                 i = 0
-       if len(self.data.values()) % count != 0
+        # import pdb
+        # pdb.set_trace()
+        if records:
+            yield records
 
     def __str__(self):
         return f'{self.data}'
