@@ -19,7 +19,7 @@ import datetime
 
 from AdressBook_Record import AddressBook, Record
 
-address_book = AddressBook()
+address_book = AddressBook().load_contacts_file()
 
 
 def hello():  # функція привітання
@@ -31,6 +31,7 @@ Enter: \n'create name' (створюємо контакт)\n\
 'change name phone_old phone_new' (міняє старий номер телефона на новий)\n\
 'del name phone' (видаляє номер телефону)\n\
 'phone name' (видає номер телефону за іменем)\n\
+'search text' (частина імені або номера телефону )\n\
 'show' (показує всі контакти) to continue;\n\
 'close or exit' to exit"
 
@@ -91,6 +92,10 @@ def del_phone(text):
     return f"Number deleted"
 
 
+def search(text):
+    return address_book.search_name_phone(text)
+
+
 def show_all():  # функція видає весь список телефонів
     records = ''
     for record in address_book.iterator():
@@ -100,6 +105,7 @@ def show_all():  # функція видає весь список телефо�
 
 # функції прощавання
 def bye():
+    address_book.save_contacts_file()
     exit("Good bye")
 
 
@@ -115,7 +121,8 @@ INPUT_HANDLER = {
     "hello": hello,
     "next_birthday": day_to_birt_func,
     "phone": get_phone,
-    "show": show_all
+    "show": show_all,
+    "search": search
 }
 
 
@@ -164,22 +171,6 @@ def create_data(text):
     """
     name, *phones = text.strip().split(' ')
     return name, phones
-
-
-address_book.add_record("olga")
-address_book.add_record("olga1")
-address_book.add_record("olga2")
-address_book.add_record("olga3")
-address_book.add_record("olga4")
-address_book.add_record("olga5")
-address_book.add_record("olga6")
-address_book.add_record("olga7")
-address_book.add_record("olga8")
-address_book.add_record("olga9")
-address_book.add_record("olga10")
-
-address_book["olga"].add_phone("242222000000")
-address_book["olga"].add_birthday('05.04.1980')
 
 
 def main():

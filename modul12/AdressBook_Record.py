@@ -1,13 +1,21 @@
 import pickle
+import os.path
 from collections import UserDict
 from datetime import datetime
 
 
 class AddressBook(UserDict):
     # адресна книга з контактами
-    # self.load_contacts_file()
+    __NAMEFILE = "address_book_contacts.pickle"
+    # def __init__(self):
+    #     super().__init__()
+    #     self.load_contacts_file()
+
     def add_record(self, name):
         self.data[name] = Record(name)
+
+    def add_full_record(self, record):
+        self.data[record.name.value] = record
 
     def exist(self, name):
         return name in self.data
@@ -29,17 +37,29 @@ class AddressBook(UserDict):
         if records:
             yield records
 
-    # def save_contacts_file(self):
-    #     with open("address_book_contacts", "wb") as fh:
-    #         pickle.dump(self, fh)
-    #
+    def search_name_phone(self, key_word):
+        result_dict_contact = AddressBook()
+        for record in self.data.values():
+            if key_word in record.name.value or key_word in record.phones:
+                result_dict_contact.add_full_record(record)
+        return result_dict_contact
+
+    def save_contacts_file(self):
+        with open(self.__NAMEFILE, "wb") as fh:
+            pickle.dump(self, fh)
+
+
     # def load_contacts_file(self):
-    #     try:
-    #         with open("address_book_contacts", "rb") as fh:
+    #     if os.path.exists(self.__NAMEFILE):
+    #         with open(self.__NAMEFILE, "rb") as fh:
     #             self.data = pickle.load(fh)
-    #     except FileNotFoundError:
-    #         f"File not exists"
-    #     return self.data
+    #
+    def load_contacts_file(self):
+        if os.path.exists(self.__NAMEFILE):
+            with open(self.__NAMEFILE, "rb") as fh:
+                return pickle.load(fh)
+        else:
+            self.save_contacts_file()
 
     def __str__(self):
         return f'{self.data}'
@@ -112,7 +132,10 @@ class Phone(Field):
         self._value = value
 
     def __eq__(self, other):
-        return self.value == other.value
+        if isinstance(other, Phone):
+            return self.value == other.value
+        if isinstance(other, str):
+            return other in self.value
 
 
 class Birthday(Field):
