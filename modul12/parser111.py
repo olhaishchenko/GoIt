@@ -16,7 +16,8 @@
 # Перевірку на коректність веденого номера телефону setter для value класу Phone.
 # Перевірку на коректність веденого дня народження setter для value класу Birthday.
 import datetime
-
+from prompt_toolkit import prompt
+from prompt_toolkit.completion import WordCompleter
 from AdressBook_Record import AddressBook, Record
 
 address_book = AddressBook().load_contacts_file()
@@ -177,7 +178,9 @@ def main():
     print(hello())
     try:
         while True:
-            text = input("Input command: ")
+            html_completer = WordCompleter(['use', 'learn', 'copy', 'add', 'remove', 'move', 'delete'])
+            text = prompt('Enter: ', completer=html_completer)
+            # text = input("Input command: ")
             print(call_handler(text))
     finally:
         address_book.save_contacts_file()
