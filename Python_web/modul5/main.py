@@ -28,10 +28,6 @@ async def p24call(date) -> dict:
 
     async with aiohttp.ClientSession() as session:
         async with session.get('https://api.privatbank.ua/p24api/exchange_rates?json&date=' + date) as response:
-            # print("Status:", response.status)
-            # print("Content-type:", response.headers['content-type'])
-            # print('Cookies: ', response.cookies)
-            # print(response.ok)
             result = await response.json()
             return result
 
