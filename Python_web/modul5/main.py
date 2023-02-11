@@ -16,6 +16,8 @@ while count_date > 1:
     day = timedelta(days=1)
     begin_interval = today - day
     data.append(begin_interval.strftime("%d.%m.%Y"))
+    today=begin_interval
+    count_date -=1
 print(data)
 async def main():
 
