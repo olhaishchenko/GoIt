@@ -67,8 +67,7 @@ class Server:
             await self.unregister(ws)
 
     def list_days(self, count: int) -> list:
-        if count >= 10:
-            raise ValueError("Among days can't be more 10")
+
         today = datetime.today().date()
         date = today.strftime("%d.%m.%Y")
         data = [date]
@@ -90,8 +89,10 @@ class Server:
                     count_day = 1
                 else:
                     count_day = int(list_message[1])
+                if count_day > 10:
+                    await self.send_to_client("the number of days can't be more 10", ws)
+                    break
                 date = self.list_days(count_day)
-
                 answer = []
                 for day in date:
                     r = await get_exchange(day)
