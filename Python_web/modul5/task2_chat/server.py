@@ -1,6 +1,7 @@
 import asyncio
+import json
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import aiohttp
 import websockets
@@ -65,14 +66,37 @@ class Server:
         finally:
             await self.unregister(ws)
 
+    def list_days(self, count: int) -> list:
+        if count >= 10:
+            raise ValueError("Among days can't be more 10")
+        today = datetime.today().date()
+        date = today.strftime("%d.%m.%Y")
+        data = [date]
+        while count > 1:
+            day = timedelta(days=1)
+            new_day = today - day
+            data.append(new_day.strftime("%d.%m.%Y"))
+            today = new_day
+            count -= 1
+        return data
+
     async def distrubute(self, ws: WebSocketServerProtocol):
+
         async for message in ws:
-            today = datetime.today().date()
-            date = today.strftime("%d.%m.%Y")
-            if message == 'exchange':
-                r = await get_exchange(date)
-                # await self.send_to_clients(r)
-                await self.send_to_client(r, ws)
+
+            if message.startswith('exchange') or message.startswith('exch'):
+                list_message = message.split(' ')
+                if len(list_message) == 1:
+                    count_day = 1
+                else:
+                    count_day = int(list_message[1])
+                date = self.list_days(count_day)
+
+                answer = []
+                for day in date:
+                    r = await get_exchange(day)
+                    answer.append(r)
+                await self.send_to_client(answer, ws)
             else:
                 await self.send_to_clients(f"{ws.name}: {message}")
 
