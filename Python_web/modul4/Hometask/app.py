@@ -73,12 +73,6 @@ class HTTPHandler(BaseHTTPRequestHandler):
         html = template.render()
         self.wfile.write(html.encode())
 
-    def send_html(self, filename, status_code=200):
-        self.send_response(status_code)
-        self.send_header('Content-Type', 'text/html')
-        self.end_headers()
-        with open(filename, 'rb') as f:
-            self.wfile.write(f.read())
 
 def run(server=HTTPServer, handler=HTTPHandler):
     address = ('0.0.0.0', 3000)
