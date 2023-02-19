@@ -1,4 +1,5 @@
 import json
+import logging
 import platform
 import sys
 
@@ -11,6 +12,7 @@ from datetime import timedelta, datetime
 def list_days(count: int) -> list:
     if count >= 10:
         raise ValueError("Among days can't be more 10")
+        count = 10
     today = datetime.today().date()
     date = today.strftime("%d.%m.%Y")
     data = [date]
@@ -23,18 +25,28 @@ def list_days(count: int) -> list:
     return data
 
 
+async def request(url):
+    async with aiohttp.ClientSession() as session:
+        try:
+            async with session.get(url) as response:
+                if response.status == 200:
+                    r = await response.json()
+                    return r
+                logging.error(f"Error status {response.status} for {url}")
+        except aiohttp.ClientConnectorError as e:
+            logging.error(f"Connection error {url}: {e}")
+        return None
+
+
 async def p24call(date) -> dict:
 
-    async with aiohttp.ClientSession() as session:
-        async with session.get('https://api.privatbank.ua/p24api/exchange_rates?json&date=' + date) as response:
-            result = await response.json()
-            return result
+    async with request('https://api.privatbank.ua/p24api/exchange_rates?json&date=' + date) as response:
+        result = await response.json()
+        return result
 
 
 def get_exchange_rates(days) -> list[dict]:
 
-    if platform.system() == 'Windows':
-        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     answer = []
     for day in days:
         r = asyncio.run(p24call(day))
@@ -49,6 +61,8 @@ def get_exchange_rates(days) -> list[dict]:
 
 
 if __name__ == "__main__":
+    if platform.system() == 'Windows':
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     count_date = 1
     if len(sys.argv) > 1:
         count_date = int(sys.argv[1])
