@@ -3,8 +3,7 @@ from sqlalchemy import and_
 import sys
 from sqlalchemy.exc import SQLAlchemyError
 
-from src.db import session
-from src.models import Student, Teacher
+from src.crud import create_student, create_teacher, create_discipline
 
 parser = argparse.ArgumentParser(description='Todo APP')
 parser.add_argument('-a', '--action', choices=['create', 'read', 'update', 'delete'],  required=True)
@@ -35,47 +34,20 @@ g_id = my_arg.get('group_id')
 t_id = my_arg.get('teacher_id')
 d_id = my_arg.get('discipline_id')
 s_id = my_arg.get('student_id')
-_id = my_arg.get('id')
 grade = my_arg.get('grade')
+_id = my_arg.get('id')
 
-
-
-def get_user(login):
-    user = session.query(User).filter(User.login == login).first()
-    return user
-
-
-def get_all_todos(user):
-    todos = session.query(Todo).join(User).filter(Todo.user ==user).all()
-    return todos
-
-
-def create_todo(title, description, user):
-    todo = Todo(title=title, description=description, user=user)
-    session.add(todo)
-    session.commit()
-    session.close()
-
-
-def update_todo(_id, title, description, user):
-    todo = session.query(Todo).filter(and_(Todo.user == user, Todo.id == _id))
-    if todo:
-        todo.update({"title": title, "description": description})
-        session.commit()
-    session.close()
-    return todo.first()
-
-
-def remove_todo(_id, user):
-    r = session.query(Todo).filter(and_(Todo.user == user, Todo.id == id)).delete()
-    session.commit()
-    session.close()
-    return r
 
 def main(user):
     match action:
         case 'create':
-            create_todo(title=title, description=description, user=user)
+            if model == 'Teacher':
+                create_teacher(fullname=fullname)
+            elif model == 'Student':
+                create_student(fullname=fullname, g_id=g_id)
+            elif model == 'Discipline':
+                create_discipline(fullname=fullname, t_id = t_id)
+
         case 'list':
             todos = get_all_todos(user)
             for t in todos:
