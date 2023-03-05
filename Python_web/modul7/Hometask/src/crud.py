@@ -31,7 +31,7 @@ def create_discipline(fullname, t_id):
     session.close()
 
 def create_grade(grade, data, s_id, d_id):
-    grade = Grade(grade=grade, data=data, student_id=s_id, discipline_id=d_id)
+    grade = Grade(grade=grade, date_of=data, student_id=s_id, discipline_id=d_id)
     session.add(grade)
     session.commit()
     session.close()

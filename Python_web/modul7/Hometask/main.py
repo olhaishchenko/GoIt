@@ -3,7 +3,7 @@ from sqlalchemy import and_
 import sys
 from sqlalchemy.exc import SQLAlchemyError
 
-from src.crud import create_student, create_teacher, create_discipline
+from src.crud import create_student, create_teacher, create_discipline,create_group, create_grade
 
 parser = argparse.ArgumentParser(description='Todo APP')
 parser.add_argument('-a', '--action', choices=['create', 'read', 'update', 'delete'],  required=True)
@@ -47,6 +47,10 @@ def main(user):
                 create_student(fullname=fullname, g_id=g_id)
             elif model == 'Discipline':
                 create_discipline(fullname=fullname, t_id = t_id)
+            elif model == 'Group':
+                create_group(name=name)
+            elif model == 'Grade':
+                create_grade(grade=grade, data=data, s_id=s_id, d_id=d_id)
 
         case 'list':
             todos = get_all_todos(user)
