@@ -81,13 +81,13 @@ def main():
             elif model == 'Student':
                 t = update_student(_id=_id, fullname=fullname, g_id=g_id)
                 if t:
-                    print(t.id, t.fullname, t.g_id)
+                    print(t.id, t.fullname, t.group_id)
                 else:
                     print('Not found')
             elif model == 'Discipline':
                 t = update_discipline(_id=_id, name=name, t_id=t_id)
                 if t:
-                    print(t.id, t.name, t.t_id)
+                    print(t.id, t.name, t.teacher_id)
                 else:
                     print('Not found')
             elif model == 'Group':
@@ -99,7 +99,7 @@ def main():
             elif model == 'Grade':
                 t = update_grade(grade=grade, data=datetime.strptime(data,'%Y-%M-%d').date(), s_id=s_id, d_id=d_id)
                 if t:
-                    print(t.grade, t.data, t.s_id, t.d_id)
+                    print(t.grade, t.data, t.student_id, t.discipline_id)
                 else:
                     print('Not found')
         case 'delete':
