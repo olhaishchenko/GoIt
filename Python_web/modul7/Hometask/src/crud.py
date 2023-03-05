@@ -5,20 +5,28 @@ from .db import session
 from .models import Student, Teacher, Group, Grade, Discipline
 
 
-def get_all_students(st):
-    pass
+def get_all_students():
+    students = session.query(Student).all()
+    session.close()
+    return students
 
 
-def get_all_teachers(user):
-    pass
+def get_all_teachers():
+    teachers = session.query(Teacher).all()
+    session.close()
+    return teachers
 
 
-def get_all_disciplines(user):
-    pass
+def get_all_disciplines():
+    disciplines = session.query(Discipline).all()
+    session.close()
+    return disciplines
 
 
 def get_all_group():
-    pass
+    groups = session.query(Group).all()
+    session.close()
+    return groups
 
 
 def create_student(fullname, g_id):
