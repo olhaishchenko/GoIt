@@ -165,16 +165,9 @@ def select_12(discipline_id, group_id):
         and_(Grade.discipline_id == discipline_id, Group.id == group_id)
     ).order_by(desc(Grade.date_of)).limit(1).scalar_subquery())
 
-    result = session.query(Discipline.name,
-                      Student.fullname,
-                      Group.name,
-                      Grade.date_of,
-                      Grade.grade
-                      ) \
-        .select_from(Grade) \
-        .join(Student) \
-        .join(Discipline) \
-        .join(Group)\
+    result = session.query(Discipline.name, Student.fullname, Group.name,
+                           Grade.date_of, Grade.grade) \
+        .select_from(Grade).join(Student).join(Discipline).join(Group)\
         .filter(and_(Discipline.id == discipline_id, Group.id == group_id, Grade.date_of == subquery)) \
         .order_by(desc(Grade.date_of)) \
         .all()
