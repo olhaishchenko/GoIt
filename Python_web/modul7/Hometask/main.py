@@ -60,11 +60,11 @@ def main():
             elif model == 'Student':
                 students = get_all_students()
                 for student in students:
-                    print(student.id, student.fullname, student.group)
+                    print(student.id, student.fullname, 'group_id: ', student.group_id)
             elif model == 'Discipline':
                 disciplines = get_all_disciplines()
                 for discipline in disciplines:
-                    print(discipline.id, discipline.name, discipline.teacher, discipline.teacher_id)
+                    print(discipline.id, discipline.name, 'teacher_id: ', discipline.teacher_id)
             elif model == 'Group':
                 groups = get_all_group()
                 for group in groups:
