@@ -4,6 +4,8 @@ import sys
 from sqlalchemy.exc import SQLAlchemyError
 
 from src.crud import create_student, create_teacher, create_discipline,create_group, create_grade
+from src.crud import update_teacher,update_grade, update_group, update_discipline, update_student
+from src.crud import delete_teacher, delete_discipline, delete_group, delete_student, delete_grade
 
 parser = argparse.ArgumentParser(description='Todo APP')
 parser.add_argument('-a', '--action', choices=['create', 'read', 'update', 'delete'],  required=True)
@@ -46,25 +48,58 @@ def main(user):
             elif model == 'Student':
                 create_student(fullname=fullname, g_id=g_id)
             elif model == 'Discipline':
-                create_discipline(fullname=fullname, t_id = t_id)
+                create_discipline(name=name, t_id=t_id)
             elif model == 'Group':
                 create_group(name=name)
             elif model == 'Grade':
                 create_grade(grade=grade, data=data, s_id=s_id, d_id=d_id)
-
         case 'list':
             todos = get_all_todos(user)
             for t in todos:
                 print(t.id, t.title, t.description, t.user.login)
         case 'update':
-            t = update_todo(_id=_id, title=title, description=description, user=user)
-            if t:
-                print(t.id, t.title, t.description, t.user.login)
-            else:
-                print('Not found')
+            if model == 'Teacher':
+                t = update_teacher(_id=_id, fullname=fullname)
+                if t:
+                    print(t.id, t.fullname)
+                else:
+                    print('Not found')
+            elif model == 'Student':
+                t = update_student(_id=_id, fullname=fullname, g_id=g_id)
+                if t:
+                    print(t.id, t.fullname, t.g_id)
+                else:
+                    print('Not found')
+            elif model == 'Discipline':
+                t = update_discipline(_id=_id, name=name, t_id=t_id)
+                if t:
+                    print(t.id, t.name, t.t_id)
+                else:
+                    print('Not found')
+            elif model == 'Group':
+                t = update_group(_id=_id, name=name)
+                if t:
+                    print(t.id, t.name)
+                else:
+                    print('Not found')
+            elif model == 'Grade':
+                t = update_grade(grade=grade, data=data, s_id=s_id, d_id=d_id)
+                if t:
+                    print(t.grade, t.data, t.s_id, t.d_id)
+                else:
+                    print('Not found')
         case 'remove':
-            r = remove_todo(_id=_id, user=user)
-            print(f'Remove: {r}')
+            if model == 'Teacher':
+                r = delete_teacher(_id=_id)
+            elif model == 'Student':
+                r = delete_student(_id=_id)
+            elif model == 'Discipline':
+                r = delete_discipline(_id=_id)
+            elif model == 'Group':
+                r = delete_group(_id=_id)
+            elif model == 'Grade':
+                r = delete_grade(_id=_id)
+            print(f'Delete: {r}')
         case _:
             print('Nothing')
 
