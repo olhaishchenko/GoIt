@@ -1,4 +1,5 @@
 import redis
+import mongoengine
 from redis_lru import RedisLRU
 
 from models import Author,Quote
