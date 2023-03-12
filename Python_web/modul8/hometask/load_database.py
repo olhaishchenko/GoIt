@@ -10,7 +10,7 @@ def open_file(file_name):
 
 
 def insert_authors(file_name):
-    # Author.drop_collection()
+    Author.drop_collection()
     dict_authors = open_file(file_name)
     for author in dict_authors:
         new_author = Author(fullname=author['fullname'])
@@ -21,14 +21,14 @@ def insert_authors(file_name):
 
 
 def insert_quotes(file_name):
-    # Quote.drop_collection()
+    Quote.drop_collection()
     authors = Author.objects()
     for author in authors:
         print(author.to_mongo().to_dict()['_id'])
     dict_quotes = open_file(file_name)
     for quote in dict_quotes:
         new_quote = Quote(tags=quote['tags'])
-        new_quote.author = Author.objects(fullname = quote['author'])[0].to_mongo().to_dict()['_id']
+        new_quote.author = Author.objects(fullname=quote['author'])[0].to_mongo().to_dict()['_id']
         print(new_quote.author)
         new_quote.quote = quote['quote']
         new_quote.save()

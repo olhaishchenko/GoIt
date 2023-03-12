@@ -12,13 +12,13 @@ cache = RedisLRU(client)
 @cache
 def search_author(fname):
     authors = Author.objects()
-    return authors(fullname__istartwith=fname)
+    return authors(fullname__istartswith=fname)
 
 
 @cache
 def search_quote(tag):
     quotes = Quote.objects()
-    return quotes(tag__contains=tag)
+    return quotes(tags__contains=tag)
 
 
 def output_response(response):
