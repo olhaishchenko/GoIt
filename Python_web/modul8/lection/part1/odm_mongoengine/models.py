@@ -2,10 +2,12 @@ from mongoengine import *
 
 connect(host="mongodb+srv://userweb9:567234@cluster0.byupvtg.mongodb.net/web9?retryWrites=true&w=majority", ssl=True)
 
+
 class User(Document):
     email = StringField(required=True)
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
+
 
 class Post(Document):
     title = StringField(max_length=120, required=True)

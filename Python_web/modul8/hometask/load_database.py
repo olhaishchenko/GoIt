@@ -1,7 +1,5 @@
 import json
 
-from bson import ObjectId
-
 from models import Author, Quote
 
 
@@ -12,10 +10,10 @@ def open_file(file_name):
 
 
 def insert_authors(file_name):
-    Author.drop_collection()
+    # Author.drop_collection()
     dict_authors = open_file(file_name)
     for author in dict_authors:
-        new_author = Author(fullname = author['fullname'])
+        new_author = Author(fullname=author['fullname'])
         new_author.born_date = author['born_date']
         new_author.born_location = author['born_location']
         new_author.description = author['description']
@@ -23,7 +21,7 @@ def insert_authors(file_name):
 
 
 def insert_quotes(file_name):
-    Quote.drop_collection()
+    # Quote.drop_collection()
     authors = Author.objects()
     for author in authors:
         print(author.to_mongo().to_dict()['_id'])
@@ -34,6 +32,7 @@ def insert_quotes(file_name):
         print(new_quote.author)
         new_quote.quote = quote['quote']
         new_quote.save()
+
 
 if __name__ == '__main__':
     insert_authors('authors.json')
