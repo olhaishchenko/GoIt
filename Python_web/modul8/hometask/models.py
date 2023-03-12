@@ -1,7 +1,8 @@
 from mongoengine import *
 
-# connect(host="mongodb+srv://userweb9:567234@cluster0.byupvtg.mongodb.net/web9?retryWrites=true&w=majority", ssl=True)
-# connect(host=f"mongodb://127.0.0.1:27017/web9")
+from connection_db import connection_string
+
+connect(host=connection_string, ssl=True)
 
 
 class Author(Document):

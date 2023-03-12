@@ -1,5 +1,4 @@
 import redis
-import mongoengine
 
 from redis_lru import RedisLRU
 
