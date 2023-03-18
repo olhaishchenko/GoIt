@@ -1,6 +1,4 @@
-import re
 import json
-from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
@@ -24,7 +22,7 @@ def spider_quotes():
     content = soup.select('div[class=quote]')
     result_quotes = []
     for element in content:
-        tags = element.find('div', attrs={"class": "tags"}).find('meta')['content']
+        tags = element.find('div', attrs={"class": "tags"}).find('meta')['content'].split(",")
         author = element.find('small', attrs={"class": "author"}).text
         quote = element.find('span', attrs={"class": "text"}).text
         result = {"tags": tags,
@@ -39,11 +37,11 @@ def spider_authors(urls):
     for url in urls:
         response = requests.get(base_url + url)
         soup = BeautifulSoup(response.text, 'html.parser')
-        content = soup.select('div[class=author-details]')
-        fullname = content.find('h3', attrs={"class": "author-title"}).text
+        content = soup.select('div[class=author-details]')[0]
+        fullname = content.find('h3', attrs={"class": "author-title"}).text.split('\n')[0]
         born_date = content.find('span', attrs={"class": "author-born-date"}).text
         born_location = content.find('span', attrs={"class": "author-born-location"}).text
-        description = content.find('div', attrs={"class": "author-description"}).text
+        description = content.find('div', attrs={"class": "author-description"}).text.strip()
         result = {"fullname": fullname,
                   "born_date": born_date,
                   "born_location": born_location,
