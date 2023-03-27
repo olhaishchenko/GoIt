@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "app_my_site/base.html" %}
 
-</body>
-</html>
+{% block content %}
+    <h1>Post a new article</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Post">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    {% if form.errors %}
+    <ul class="user-msg error">
+    {% for field in form %}
+        {% for error in field.errors %}
+            <li>
+              {% if field != '__all__' %}
+                <strong>{{ field.label }}:</strong>
+              {% endif %}
+              {{ error }}
+            </li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

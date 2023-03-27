@@ -13,9 +13,15 @@ class Author(models.Model):
         return self.fullname
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=50, null=False, unique=True)
+    def __str__(self):
+        return self.name
+
+
 class Quote(models.Model):
-    tags = ArrayField(models.TextField(max_length=250, null=False))
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
+    tags = models.ManyToManyField(Tag, related_name="quotes")
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name="quotes")
     quote = models.TextField(null=False)
 
     def __str__(self):

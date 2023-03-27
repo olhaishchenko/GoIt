@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-u17qlc@exulaxakc@2c%9c4cpe*4=sd17%7q$9aayxbqwv4aa!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+USE_X_FORWARDED_HOST = True
 
 # Application definition
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_my_site',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# https://docs.djangoproject.com/en/4.1/ref/settings/#login-redirect-url
+LOGIN_REDIRECT_URL = '/'
