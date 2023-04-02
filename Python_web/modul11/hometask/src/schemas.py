@@ -15,8 +15,8 @@ class ContactResponse(BaseModel):
     first_name: str
     last_name: str
     email: EmailStr
-    phone: str
-    birthday: date
+    telephone_number: str
+    date_of_birthday: date
 
     class Config:
         orm_mode = True
