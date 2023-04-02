@@ -35,32 +35,14 @@ async def get_contact_by_birthday(db: Session):
     day_today = datetime.today().date()
     contacts = db.query(Contact).all()
     cont_bd = []
-    next_b_day = datetime(1999, 1, 1).date()
-    # print(next_b_day)
     for contact in contacts:
-        if day_today.month > contact.date_of_birthday.month:
-            next_b_day = contact.date_of_birthday.replace(year=day_today.year + 1)
-            print(next_b_day)
-        elif day_today.month == contact.date_of_birthday.month and day_today.day > contact.date_of_birthday.day:
-            next_b_day = contact.date_of_birthday.replace(year=day_today.year + 1)
-            print(next_b_day)
-        else:
-            next_b_day = contact.date_of_birthday.replace(year=day_today.year)
-            print(next_b_day)
-        if (next_b_day-day_today).days <=7:
+        next_b_day = contact.date_of_birthday.replace(year=day_today.year)
+        diference = (next_b_day-day_today).days
+        print(diference)
+        if 0 <= diference <= 7:
             cont_bd.append(contact)
     return cont_bd
-    # return contacts
 
-    #     day_today = datetime.today().date()
-    #     next_b_day = self._value.date()
-    #     if day_today.month > next_b_day.month:
-    #         next_b_day = next_b_day.replace(year=day_today.year + 1)
-    #     elif day_today.month == next_b_day.month and day_today.day > next_b_day.day:
-    #         next_b_day = next_b_day.replace(year=day_today.year + 1)
-    #     else:
-    #         next_b_day = next_b_day.replace(year=day_today.year)
-    #     return (next_b_day-day_today).days
 
 async def create(body: ContactModel, db: Session):
     contact = Contact(**body.dict())
