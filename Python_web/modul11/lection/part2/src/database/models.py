@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, func
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, func, event
 from sqlalchemy.orm import relationship, declarative_base
 
 Base = declarative_base()
@@ -25,3 +25,13 @@ class Cat(Base):
     owner = relationship("Owner", backref="cats")#поєднує друг з другом backref
 
 
+@event.listens_for(Cat, 'before_insert')
+def updated_vaccinated(mapper, conn, target):
+    if target.nickname == 'Boris':
+        target.vaccinated = True
+
+
+@event.listens_for(Cat, 'before_update')
+def updated_vaccinated(mapper, conn, target):
+    if target.nickname == 'Boris':
+        target.vaccinated = True

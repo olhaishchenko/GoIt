@@ -1,4 +1,9 @@
-from fastapi import FastAPI, Depends, HTTPException
+import time
+
+from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 
@@ -8,9 +13,22 @@ from src.routes import owners, cats
 app = FastAPI()#це застосунок
 
 
-@app.get("/")#операції для кожного користувача робмться своя корутіна
-async def root():
-    return {"message": "Hello World!"}
+@app.middleware('http')
+async def custom_middleware(request: Request, call_next):
+    start_time = time.time()
+    response = await call_next(request)
+    during = time.time()- start_time
+    response.headers['performance']=str(during)
+    return response
+
+
+templates =Jinja2Templates(directory='templates')
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.get("/", response_class=HTMLResponse, description='Main Page')#операції для кожного користувача робмться своя корутіна
+async def root(request: Request):
+    return templates.TemplateResponse('index.html', {"request": request, "title": "Cats App"})
 
 
 @app.get("/api/healthchecker")
