@@ -4,7 +4,7 @@ from fastapi import FastAPI, Depends, HTTPException, status, Path, APIRouter
 from sqlalchemy.orm import Session
 
 from src.database.db import get_db
-from src.database.models import Owner
+from src.repository import owners as repository_owners
 from src.schemas import OwnerModel, OwnerResponse
 
 router = APIRouter(prefix="/owners", tags=['owners'])
@@ -12,13 +12,13 @@ router = APIRouter(prefix="/owners", tags=['owners'])
 
 @router.get("/", response_model=List[OwnerResponse], name="повернути власників")
 async def get_owners(db: Session = Depends(get_db)):
-    owners = db.query(Owner).all()
+    owners = await repository_owners.get_owners(db)
     return owners
 
 
 @router.get("/{owner_id}", response_model=OwnerResponse)
 async def get_owner(owner_id: int = Path(ge=1), db: Session = Depends(get_db)):
-    owner = db.query(Owner).filter_by(id=owner_id).first()
+    owner = await repository_owners.get_owner_by_id(owner_id)
     if owner is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
     return owner
@@ -26,6 +26,10 @@ async def get_owner(owner_id: int = Path(ge=1), db: Session = Depends(get_db)):
 
 @router.post("/", response_model=OwnerResponse, status_code=status.HTTP_201_CREATED)
 async def create_owner(body: OwnerModel, db: Session = Depends(get_db)):
+    owner = db.query(Owner).filter_by(email=body.email).first()
+    if owner:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail='Email is exists')
+
     owner = Owner(**body.dict())
     db.add(owner)
     db.commit()
