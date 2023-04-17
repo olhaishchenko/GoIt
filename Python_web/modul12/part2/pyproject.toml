@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "part2"
+version = "0.1.0"
+description = ""
+authors = ["olhaishchenko <olga.ua.olga@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.95.0"
+pydantic = {extras = ["email"], version = "^1.10.7"}
+python-multipart = "^0.0.6"
+sqlalchemy = "^2.0.8"
+psycopg-binary = "^3.1.8"
+alembic = "^1.10.2"
+psycopg2-binary = "^2.9.5"
+uvicorn = {extras = ["standard"], version = "^0.21.1"}
+jinja2 = "^3.1.2"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+libgravatar = "^1.0.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
