@@ -40,25 +40,3 @@ def upload_quote(request):
 def authors_descr(request, pk):
     author = get_object_or_404(Author, pk=pk)
     return render(request, 'app_my_site/authors_descr.html', context={"title": "AUTHOR_DESCRIPTION", "author": author})
-
-
-# @login_required
-# def remove(request, pic_id):
-#     picture = Picture.objects.filter(pk=pic_id, users=request.users)
-#     try:
-#         os.unlink(os.path.join(settings.MEDIA_ROOT, str(picture.first().path)))
-#     except OSError as e:
-#         print(e)
-#     picture.delete()
-#     return redirect(to='app_instagram:pictures')
-
-
-# @login_required
-# def edit(request, pic_id):
-#     if request.method == "POST":
-#         description = request.POST.get("description")
-#         Picture.objects.filter(pk=pic_id, users=request.users).update(description=description)
-#         return redirect(to='app_instagram:pictures')
-#     picture = Picture.objects.filter(pk=pic_id, users=request.users).first()
-#     return render(request, 'app_instagram/edit.html',
-#                   context={"title": "Web 9 Group", "pic": picture, "media": settings.MEDIA_URL})

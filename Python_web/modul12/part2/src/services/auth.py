@@ -68,7 +68,7 @@ class Auth:
         # user: User | None = db.query(User).filter_by(email=email).first()
         # TODO: add get user
         # user = None
-        user =await repository_users.get_user_by_email(email, db)
+        user = await repository_users.get_user_by_email(email, db)
         if user is None:
             raise credentials_exception
         return user

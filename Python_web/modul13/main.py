@@ -7,12 +7,12 @@ from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 from pydantic import EmailStr, BaseModel
 from typing import List
 
-file_config = Path(__file__).parent.joinpath('conf/config.ini')
-config = configparser.ConfigParser()
-config.read(file_config)
-
-username = config.get('MAIL_MN', 'USER')
-password = config.get('MAIL_MN', 'PASSWORD')
+# file_config = Path(__file__).parent.joinpath('conf/config.ini')
+# config = configparser.ConfigParser()
+# config.read(file_config)
+#
+# username = config.get('MAIL_MN', 'USER')
+# password = config.get('MAIL_MN', 'PASSWORD')
 
 
 class EmailSchema(BaseModel):
@@ -20,9 +20,9 @@ class EmailSchema(BaseModel):
 
 
 conf = ConnectionConfig(
-    MAIL_USERNAME=username,
-    MAIL_PASSWORD=password,
-    MAIL_FROM=username,
+    MAIL_USERNAME="olga.ua.olga@meta.ua",
+    MAIL_PASSWORD="Logarifm567",
+    MAIL_FROM="olga.ua.olga@meta.ua",
     MAIL_PORT=465,
     MAIL_SERVER="smtp.meta.ua",
     MAIL_FROM_NAME="Example email",
