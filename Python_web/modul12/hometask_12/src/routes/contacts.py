@@ -2,6 +2,7 @@ from typing import List
 
 from fastapi import Depends, HTTPException, status, Path, APIRouter, Query
 from sqlalchemy.orm import Session
+from fastapi_limiter.depends import RateLimiter
 
 from src.database.db import get_db
 from src.database.models import User, Role
@@ -19,7 +20,7 @@ allowed_operation_remove = RoleAccess([Role.admin])
 
 
 @router.get("/", response_model=List[ContactResponse], name="All contacts",
-            dependencies=[Depends(allowed_operation_get)])
+            dependencies=[Depends(allowed_operation_get), Depends(RateLimiter(times=2, seconds=5))])
 async def get_contacts(skip: int = 0, limit: int = 100, offset: int = 10, db: Session = Depends(get_db),
                        current_user: User = Depends(auth_service.get_current_user)):
     contacts = await repository_contacts.get_contacts(skip, limit, current_user, db)
@@ -76,7 +77,7 @@ async def get_contact_by_birthday(db: Session = Depends(get_db),
 
 
 @router.post("/", response_model=ContactResponse, status_code=status.HTTP_201_CREATED,
-             dependencies=[Depends(allowed_operation_create)])
+             dependencies=[Depends(allowed_operation_create), Depends(RateLimiter(times=2, seconds=120))])
 async def create_contact(body: ContactModel, db: Session = Depends(get_db),
                          current_user: User = Depends(auth_service.get_current_user)):
     contact = await repository_contacts.get_contact_by_email(body.email, current_user, db)
