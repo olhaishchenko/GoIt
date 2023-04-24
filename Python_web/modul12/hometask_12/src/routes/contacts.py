@@ -28,7 +28,7 @@ async def get_contacts(skip: int = 0, limit: int = 100, offset: int = 10, db: Se
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='NOT_FOUND')
     return contacts
 
-@router.get("/by_id/{contact_id}", response_model=ContactResponse, dependencies=[Depends(allowed_operation_get)])
+@router.get("/{contact_id}", response_model=ContactResponse, dependencies=[Depends(allowed_operation_get)])
 async def get_contact_by_id(contact_id: int, db: Session = Depends(get_db),
                             current_user: User = Depends(auth_service.get_current_user)):
     contact = await repository_contacts.get_contact_by_id(contact_id, current_user, db)
@@ -37,33 +37,33 @@ async def get_contact_by_id(contact_id: int, db: Session = Depends(get_db),
     return contact
 
 
-@router.get("/by_first_name/{first_name}", response_model=List[ContactResponse],
+@router.get("/{body_field}/{body_param}", response_model=List[ContactResponse],
             dependencies=[Depends(allowed_operation_get)])
-async def get_contacts_by_first_name(first_name: str, db: Session = Depends(get_db),
+async def get_contacts_body_field(body_field, body_param: str, db: Session = Depends(get_db),
                                      current_user: User = Depends(auth_service.get_current_user)):
-    contacts = await repository_contacts.get_contacts_by_first_name(first_name, current_user, db)
+    contacts = await repository_contacts.get_contacts_body_field(body_field, body_param, current_user, db)
     if contacts is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
     return contacts
 
 
-@router.get("/by_last_name/{last_name}", response_model=List[ContactResponse],
-            dependencies=[Depends(allowed_operation_get)])
-async def get_contacts_by_last_name(last_name: str, db: Session = Depends(get_db),
-                                    current_user: User = Depends(auth_service.get_current_user)):
-    contacts = await repository_contacts.get_contacts_by_last_name(last_name, current_user, db)
-    if contacts is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
-    return contacts
+# @router.get("/by_last_name/{last_name}", response_model=List[ContactResponse],
+#             dependencies=[Depends(allowed_operation_get)])
+# async def get_contacts_by_last_name(last_name: str, db: Session = Depends(get_db),
+#                                     current_user: User = Depends(auth_service.get_current_user)):
+#     contacts = await repository_contacts.get_contacts_by_last_name(last_name, current_user, db)
+#     if contacts is None:
+#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
+#     return contacts
 
 
-@router.get("/by_email/{email}", response_model=List[ContactResponse], dependencies=[Depends(allowed_operation_get)])
-async def get_contact_by_email(email: str, db: Session = Depends(get_db),
-                               current_user: User = Depends(auth_service.get_current_user)):
-    contact = await repository_contacts.get_contact_by_email(email, current_user, db)
-    if contact is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
-    return contact
+# @router.get("/by_email/{email}", response_model=List[ContactResponse], dependencies=[Depends(allowed_operation_get)])
+# async def get_contact_by_email(email: str, db: Session = Depends(get_db),
+#                                current_user: User = Depends(auth_service.get_current_user)):
+#     contact = await repository_contacts.get_contact_by_email(email, current_user, db)
+#     if contact is None:
+#         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
+#     return contact
 
 
 @router.get("/by_birthday/{birthday}", response_model=List[ContactResponse],

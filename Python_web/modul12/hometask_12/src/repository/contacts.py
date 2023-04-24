@@ -17,19 +17,19 @@ async def get_contact_by_id(contact_id: int, user: User, db: Session):
     return contact
 
 
-async def get_contacts_by_first_name(first_name: str, user: User, db: Session):
-    contact = db.query(Contact).filter(and_(first_name==first_name, Contact.user_id == user.id)).all()
+async def get_contacts_body_field(body_field, body_param: str, user: User, db: Session):
+    contact = db.query(Contact).filter(and_(getattr(Contact, body_field)==body_param, Contact.user_id == user.id)).all()
     return contact
 
 
-async def get_contacts_by_last_name(last_name: str, user: User, db: Session):
-    contact = db.query(Contact).filter(and_(last_name==last_name, Contact.user_id == user.id)).all()
-    return contact
+# async def get_contacts_by_last_name(last_name: str, user: User, db: Session):
+#     contact = db.query(Contact).filter(and_(last_name==last_name, Contact.user_id == user.id)).all()
+#     return contact
 
 
-async def get_contact_by_email(email: str, user: User, db: Session):
-    contact = db.query(Contact).filter(and_(email==email, Contact.user_id == user.id)).first()
-    return contact
+# async def get_contact_by_email(email: str, user: User, db: Session):
+#     contact = db.query(Contact).filter(and_(email==email, Contact.user_id == user.id)).first()
+#     return contact
 
 
 async def get_contact_by_birthday(db: Session):
