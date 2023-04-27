@@ -1,3 +1,4 @@
+import pathlib
 import time
 from ipaddress import ip_address
 from typing import Callable
@@ -84,8 +85,9 @@ async def custom_middleware(request: Request, call_next):
     return response
 
 templates = Jinja2Templates(directory='templates')
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
+# app.mount("/static", StaticFiles(directory="static"), name="static")
+BASE_DIR = pathlib.Path(__file__).parent
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
 @app.get("/", response_class=HTMLResponse, description='Main Page')
 async def root(request: Request):
