@@ -4,6 +4,7 @@ from fastapi import Depends, HTTPException, status, Path, APIRouter, Query
 from sqlalchemy.orm import Session
 from fastapi_limiter.depends import RateLimiter
 
+from src.conf.detail import NOT_FOUND, EMAIL_IS_EXISTS
 from src.database.db import get_db
 from src.database.models import User, Role
 from src.repository import contacts as repository_contacts
@@ -24,7 +25,7 @@ allowed_operation_remove = RoleAccess([Role.admin])
 async def get_contacts(skip: int = 0, limit: int = 100, offset: int = 10, db: Session = Depends(get_db),
                        current_user: User = Depends(auth_service.get_current_user)):
     """
-    The get_contacts function returns a list of contacts.
+    The **get_contacts** function returns a list of contacts.
         The function takes in the following parameters:
             skip (int): The number of items to skip before starting to collect the result set. Default is 0.
             limit (int): The numbers of items to return after skipping 'skip' items. Default is 100, max is 1000.
@@ -40,7 +41,7 @@ async def get_contacts(skip: int = 0, limit: int = 100, offset: int = 10, db: Se
     """
     contacts = await repository_contacts.get_contacts(skip, limit, current_user, db)
     if not contacts:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='NOT_FOUND')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND)
     return contacts
 
 
@@ -48,7 +49,7 @@ async def get_contacts(skip: int = 0, limit: int = 100, offset: int = 10, db: Se
 async def get_contact_by_id(contact_id: int, db: Session = Depends(get_db),
                             current_user: User = Depends(auth_service.get_current_user)):
     """
-    The get_contact_by_id function is used to retrieve a contact by its id.
+    The **get_contact_by_id** function is used to retrieve a contact by its id.
         The function takes in the following parameters:
             - contact_id: int, the id of the contact to be retrieved.
             - db: Session = Depends(get_db), an instance of a database session that will be used for querying data from
@@ -64,7 +65,7 @@ async def get_contact_by_id(contact_id: int, db: Session = Depends(get_db),
     """
     contact = await repository_contacts.get_contact_by_id(contact_id, current_user, db)
     if contact is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND)
     return contact
 
 
@@ -73,7 +74,7 @@ async def get_contact_by_id(contact_id: int, db: Session = Depends(get_db),
 async def get_contacts_body_field(body_field, body_param: str, db: Session = Depends(get_db),
                                      current_user: User = Depends(auth_service.get_current_user)):
     """
-    The get_contacts_body_field function is used to get a list of contacts from the database.
+    The **get_contacts_body_field** function is used to get a list of contacts from the database.
     The function takes in a body_field parameter, which is the field that you want to search for in the database.
     It also takes in a body_param parameter, which is what you are searching for within that field.
     The function returns an array of contacts.
@@ -87,7 +88,7 @@ async def get_contacts_body_field(body_field, body_param: str, db: Session = Dep
     """
     contacts = await repository_contacts.get_contacts_body_field(body_field, body_param, current_user, db)
     if contacts is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND)
     return contacts
 
 
@@ -96,7 +97,7 @@ async def get_contacts_body_field(body_field, body_param: str, db: Session = Dep
 async def get_contact_by_birthday(db: Session = Depends(get_db),
                                   current_user: User = Depends(auth_service.get_current_user)):
     """
-    The get_contact_by_birthday function returns the contact with the closest birthday to today.
+    The **get_contact_by_birthday** function returns the contact with the closest birthday to today.
         If no contacts are found, a 404 error is returned.
 
     :param db: Session: Pass the database session to the function
@@ -106,7 +107,7 @@ async def get_contact_by_birthday(db: Session = Depends(get_db),
     """
     contact = await repository_contacts.get_contact_by_birthday(db)
     if contact is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND)
     return contact
 
 
@@ -115,7 +116,7 @@ async def get_contact_by_birthday(db: Session = Depends(get_db),
 async def create_contact(body: ContactModel, db: Session = Depends(get_db),
                          current_user: User = Depends(auth_service.get_current_user)):
     """
-    The create_contact function creates a new contact in the database.
+    The **create_contact** function creates a new contact in the database.
 
     :param body: ContactModel: Define the data that is required to create a contact
     :param db: Session: Get the database session
@@ -123,9 +124,9 @@ async def create_contact(body: ContactModel, db: Session = Depends(get_db),
     :return: A ContactModel object
     :doc-author: Trelent
     """
-    contact = await repository_contacts.get_contact_by_email(body.email, current_user, db)
+    contact = await repository_contacts.get_contacts_body_field('email', body.email, current_user, db)
     if contact:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail='Email is exists')
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=EMAIL_IS_EXISTS)
 
     contact = await repository_contacts.create(body, db)
     return contact
@@ -134,9 +135,21 @@ async def create_contact(body: ContactModel, db: Session = Depends(get_db),
 @router.put("/{contact_id}", response_model=ContactResponse, dependencies=[Depends(allowed_operation_update)])
 async def update_contact(body: ContactModel, contact_id: int = Path(ge=1), db: Session = Depends(get_db),
                          current_user: User = Depends(auth_service.get_current_user)):
+    """
+    The **update_contact** function updates a contact in the database.
+        The function takes an id, body and db as parameters.
+        It returns a ContactModel object.
+
+    :param body: ContactModel: Get the data from the request body
+    :param contact_id: int: Get the contact_id from the url
+    :param db: Session: Access the database
+    :param current_user: User: Get the current user from the database
+    :return: A ContactModel object
+    :doc-author: Trelent
+    """
     contact = await repository_contacts.update_contact(contact_id, current_user, body, db)
     if contact is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND)
     return contact
 
 
@@ -144,9 +157,20 @@ async def update_contact(body: ContactModel, contact_id: int = Path(ge=1), db: S
                dependencies=[Depends(allowed_operation_remove)])
 async def remove_contact(contact_id: int, db: Session = Depends(get_db),
                          current_user: User = Depends(auth_service.get_current_user)):
+    """
+    The **remove_contact** function removes a contact from the database.
+        The function takes in an integer representing the id of the contact to be removed,
+        and returns a dictionary containing information about that contact.
+
+    :param contact_id: int: Identify the contact to be removed
+    :param db: Session: Pass the database session to the repository layer
+    :param current_user: User: Get the current user
+    :return: The contact that was removed
+    :doc-author: Trelent
+    """
     contact = await repository_contacts.remove(contact_id, current_user, db)
     if contact is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not Found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND)
     db.delete(contact)
     db.commit()
     return contact

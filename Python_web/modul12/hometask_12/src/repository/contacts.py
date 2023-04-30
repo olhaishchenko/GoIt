@@ -9,7 +9,7 @@ from src.schemas import ContactModel
 
 async def get_contacts(skip: int, limit: int, user: User, db: Session):
     """
-    The get_contacts function returns a list of contacts for the user.
+    The **get_contacts** function returns a list of contacts for the user.
 
     :param skip: int: Skip a number of contacts in the database
     :param limit: int: Limit the number of contacts returned
@@ -24,7 +24,7 @@ async def get_contacts(skip: int, limit: int, user: User, db: Session):
 
 async def get_contact_by_id(contact_id: int, user: User, db: Session):
     """
-    The get_contact_by_id function takes in a contact_id and user, and returns the contact with that id.
+    The **get_contact_by_id** function takes in a contact_id and user, and returns the contact with that id.
         Args:
             contact_id (int): The id of the desired Contact object.
             user (User): The User object associated with this Contact.
@@ -41,7 +41,7 @@ async def get_contact_by_id(contact_id: int, user: User, db: Session):
 
 async def get_contacts_body_field(body_field, body_param: str, user: User, db: Session):
     """
-    The get_contacts_body_field function is a helper function that returns the contact(s) with the specified body_field
+    The **get_contacts_body_field** function is a helper function that returns the contact(s) with the specified body_field
         and body_param. The user parameter is used to ensure that only contacts belonging to the user are returned.
 
     :param body_field: Specify the field in the contact table that is being queried
@@ -58,8 +58,7 @@ async def get_contacts_body_field(body_field, body_param: str, user: User, db: S
 
 async def get_contact_by_birthday(db: Session):
     """
-    The get_contact_by_birthday function returns a list of contacts whose birthday is within the next 7 days.
-
+    The **get_contact_by_birthday** function returns a list of contacts whose birthday is within the next 7 days.
 
     :param db: Session: Connect to the database and query it
     :return: A list of contacts whose birthday is in the next 7 days
@@ -71,7 +70,6 @@ async def get_contact_by_birthday(db: Session):
     for contact in contacts:
         next_b_day = contact.date_of_birthday.replace(year=day_today.year)
         difference = (next_b_day - day_today).days
-        print(difference)
         if 0 <= difference <= 7:
             cont_bd.append(contact)
     return cont_bd
@@ -79,7 +77,7 @@ async def get_contact_by_birthday(db: Session):
 
 async def create(body: ContactModel, db: Session):
     """
-    The create function creates a new contact in the database.
+    The **create function** creates a new contact in the database.
         It takes a ContactModel object as input and returns the newly created contact.
 
     :param body: ContactModel: Get the data from the request body
@@ -96,11 +94,13 @@ async def create(body: ContactModel, db: Session):
 
 async def update_contact(contact_id: int, user: User, body: ContactModel, db: Session):
     """
-    The update_contact function updates a contact in the database.
+    The **update_contact** function updates a contact in the database.
         Args:
             contact_id (int): The id of the contact to update.
-            user (User): The user who is updating the contact. This is used to ensure that only contacts belonging to this user are updated.
-            body (ContactModel): A ContactModel object containing all the information for this new contact, including first name, last name, email address and telephone number.
+            user (User): The user who is updating the contact. This is used to ensure that only contacts belonging
+            to this user are updated.
+            body (ContactModel): A ContactModel object containing all the information for this new contact,
+            including first name, last name, email address and telephone number.
 
     :param contact_id: int: Get the contact by id
     :param user: User: Get the user_id from the user object
@@ -122,7 +122,7 @@ async def update_contact(contact_id: int, user: User, body: ContactModel, db: Se
 
 async def remove(contact_id: int, user: User, db: Session):
     """
-    The remove function removes a contact from the database.
+    The **remove** function removes a contact from the database.
         Args:
             contact_id (int): The id of the contact to be removed.
             user (User): The user who is removing the contact.

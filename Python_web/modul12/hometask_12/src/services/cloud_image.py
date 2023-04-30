@@ -17,7 +17,7 @@ class CloudImage:
     @staticmethod
     def generate_name_avatar(email: str):
         """
-        The generate_name_avatar function takes an email address as input and returns a unique avatar name.
+        The **generate_name_avatar** function takes an email address as input and returns a unique avatar name.
         The function uses the first 12 characters of the SHA256 hash of the email address to generate a unique string,
         which is then used as part of an avatar name.
 
@@ -31,7 +31,7 @@ class CloudImage:
     @staticmethod
     def upload(file, public_id: str):
         """
-        The upload function takes a file and public_id as arguments.
+        The **upload** function takes a file and public_id as arguments.
         The function then uploads the file to Cloudinary using the public_id provided.
         If no public_id is provided, one will be generated automatically.
 
@@ -46,7 +46,7 @@ class CloudImage:
     @staticmethod
     def get_url_for_avatar(public_id, r):
         """
-        The get_url_for_avatar function takes in a public_id and an r (which is the result of a cloudinary.api.resource call)
+        The **get_url_for_avatar** function takes in a public_id and an r (which is the result of a cloudinary.api.resource call)
         and returns the URL for that avatar image, which will be used to display it on the page.
 
         :param public_id: Identify the image in cloudinary

@@ -12,7 +12,6 @@ from jose import JWTError, jwt
 
 from src.database.db import get_db
 from src.repository import users as repository_users
-
 from src.conf.config import settings
 
 
@@ -25,7 +24,7 @@ class Auth:
 
     def verify_password(self, plain_password, hashed_password):
         """
-        The verify_password function takes a plain-text password and hashed
+        The **verify_password** function takes a plain-text password and hashed
         password as arguments. It then uses the pwd_context object to verify that the
         plain-text password matches the hashed one.
 
@@ -40,7 +39,7 @@ class Auth:
 
     def get_password_hash(self, password: str):
         """
-        The get_password_hash function takes a password as input and returns the hash of that password.
+        The **get_password_hash** function takes a password as input and returns the hash of that password.
         The hash is generated using the pwd_context object, which is an instance of Flask-Bcrypt's Bcrypt class.
 
         :param self: Represent the instance of the class
@@ -52,10 +51,11 @@ class Auth:
 
     async def create_access_token(self, data: dict, expires_delta: Optional[float] = None):
         """
-        The create_access_token function creates a new access token.
+        The **create_access_token** function creates a new access token.
             Args:
                 data (dict): A dictionary containing the claims to be encoded in the JWT.
-                expires_delta (Optional[float]): An optional parameter specifying how long, in seconds, the access token should last before expiring. If not specified, it defaults to 15 minutes.
+                expires_delta (Optional[float]): An optional parameter specifying how long, in seconds,
+                the access token should last before expiring. If not specified, it defaults to 15 minutes.
 
         :param self: Access the class variables and methods
         :param data: dict: Pass the data to be encoded
@@ -74,7 +74,7 @@ class Auth:
 
     async def create_refresh_token(self, data: dict, expires_delta: Optional[float] = None):
         """
-        The create_refresh_token function creates a refresh token for the user.
+        The **create_refresh_token** function creates a refresh token for the user.
             Args:
                 data (dict): A dictionary containing the user's id and username.
                 expires_delta (Optional[float]): The number of seconds until the token expires, defaults to None.
@@ -96,7 +96,7 @@ class Auth:
 
     async def get_current_user(self, token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
         """
-        The get_current_user function is a dependency that will be used in the
+        The **get_current_user** function is a dependency that will be used in the
             UserRouter class. It takes in a token and db session, and returns the user
             associated with that token. If no user is found, it raises an exception.
 
@@ -140,7 +140,7 @@ class Auth:
 
     async def decode_refresh_token(self, refresh_token: str):
         """
-        The decode_refresh_token function is used to decode the refresh token.
+        The **decode_refresh_token** function is used to decode the refresh token.
         It takes a refresh_token as an argument and returns the email of the user if it's valid.
         If not, it raises an HTTPException with status code 401 (UNAUTHORIZED) and detail 'Could not validate credentials'.
 
@@ -160,7 +160,7 @@ class Auth:
 
     def create_email_token(self, data: dict):
         """
-        The create_email_token function takes a dictionary of data and returns a token.
+        The **create_email_token** function takes a dictionary of data and returns a token.
         The token is encoded with the SECRET_KEY, which is stored in the .env file.
         The algorithm used to encode the token is also stored in the .env file.
 
@@ -177,10 +177,14 @@ class Auth:
 
     def get_email_from_token(self, token: str):
         """
-        The get_email_from_token function takes a token as an argument and returns the email associated with that token.
-        It does this by decoding the JWT using our SECRET_KEY and ALGORITHM, then checking to make sure that it has a scope of 'email_token'.
-        If it does, we return the email from its payload. If not, we raise an HTTPException with status code 401 (Unauthorized) and detail message 'Invalid scope for token'.
-        If there is any other error in decoding or validating the JWT (such as if it's expired), we raise an HTTPException with status code 422 (Unprocessable eniity) and detail message 'Invalid token for email verification'.
+        The **get_email_from_token** function takes a token as an argument and returns the email associated with that token.
+        It does this by decoding the JWT using our SECRET_KEY and ALGORITHM, then checking to make sure that
+        it has a scope of 'email_token'.
+        If it does, we return the email from its payload. If not, we raise an HTTPException
+        with status code 401 (Unauthorized) and detail message 'Invalid scope for token'.
+        If there is any other error in decoding or validating the JWT (such as if it's expired),
+        we raise an HTTPException with status code 422 (Unprocessable eniity) and
+        detail message 'Invalid token for email verification'.
 
         :param self: Represent the instance of the class
         :param token: str: Pass in the token that is sent to the user's email

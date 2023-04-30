@@ -44,7 +44,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="main.custom_middleware">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">custom_middleware</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_next</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.custom_middleware" title="Permalink to this definition">¶</a></dt>
-<dd><p>The custom_middleware function is a middleware function that adds the time it took to process the request
+<dd><p>The <strong>custom_middleware</strong> function is a middleware function that adds the time it took to process the request
 to the response headers. This can be used to measure performance of an API endpoint.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -65,7 +65,7 @@ to the response headers. This can be used to measure performance of an API endpo
 <dl class="py function">
 <dt class="sig sig-object py" id="main.healthchecker">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">healthchecker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.healthchecker" title="Permalink to this definition">¶</a></dt>
-<dd><p>The healthchecker function is a simple function that checks the health of the database.
+<dd><p>The <strong>healthchecker</strong> function is a simple function that checks the health of the database.
 It does this by making a request to the database and checking if it returns any results.
 If there are no results, then we know something is wrong with our connection to the database.</p>
 <dl class="field-list simple">
@@ -109,7 +109,7 @@ you want to pass into your templates.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main.startup">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">startup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.startup" title="Permalink to this definition">¶</a></dt>
-<dd><p>The startup function is called when the application starts up.
+<dd><p>The <strong>startup</strong> function is called when the application starts up.
 It’s a good place to initialize things that are needed by your app,
 such as connecting to databases or initializing caches.</p>
 <dl class="field-list simple">
@@ -129,7 +129,7 @@ such as connecting to databases or initializing caches.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.create">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.schemas.ContactModel" title="src.schemas.ContactModel"><span class="pre">ContactModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.contacts.create" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The create function creates a new contact in the database.</dt><dd><p>It takes a ContactModel object as input and returns the newly created contact.</p>
+<dt>The <strong>create function</strong> creates a new contact in the database.</dt><dd><p>It takes a ContactModel object as input and returns the newly created contact.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
@@ -151,7 +151,7 @@ such as connecting to databases or initializing caches.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.repository.contacts.get_contact_by_birthday">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contact_by_birthday</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.contacts.get_contact_by_birthday" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_contact_by_birthday function returns a list of contacts whose birthday is within the next 7 days.</p>
+<dd><p>The <strong>get_contact_by_birthday</strong> function returns a list of contacts whose birthday is within the next 7 days.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>db</strong> – Session: Connect to the database and query it</p>
@@ -169,7 +169,7 @@ such as connecting to databases or initializing caches.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.get_contact_by_id">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contact_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.contacts.get_contact_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The get_contact_by_id function takes in a contact_id and user, and returns the contact with that id.</dt><dd><dl class="simple">
+<dt>The <strong>get_contact_by_id</strong> function takes in a contact_id and user, and returns the contact with that id.</dt><dd><dl class="simple">
 <dt>Args:</dt><dd><p>contact_id (int): The id of the desired Contact object.
 user (User): The User object associated with this Contact.</p>
 </dd>
@@ -196,7 +196,7 @@ user (User): The User object associated with this Contact.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.repository.contacts.get_contacts">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.contacts.get_contacts" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_contacts function returns a list of contacts for the user.</p>
+<dd><p>The <strong>get_contacts</strong> function returns a list of contacts for the user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -219,7 +219,7 @@ user (User): The User object associated with this Contact.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.get_contacts_body_field">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contacts_body_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.contacts.get_contacts_body_field" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The get_contacts_body_field function is a helper function that returns the contact(s) with the specified body_field</dt><dd><p>and body_param. The user parameter is used to ensure that only contacts belonging to the user are returned.</p>
+<dt>The <strong>get_contacts_body_field</strong> function is a helper function that returns the contact(s) with the specified body_field</dt><dd><p>and body_param. The user parameter is used to ensure that only contacts belonging to the user are returned.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
@@ -244,7 +244,7 @@ user (User): The User object associated with this Contact.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.remove">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.contacts.remove" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The remove function removes a contact from the database.</dt><dd><dl class="simple">
+<dt>The <strong>remove</strong> function removes a contact from the database.</dt><dd><dl class="simple">
 <dt>Args:</dt><dd><p>contact_id (int): The id of the contact to be removed.
 user (User): The user who is removing the contact.
 db (Session): A connection to our database, used for querying and updating data.</p>
@@ -273,10 +273,12 @@ db (Session): A connection to our database, used for querying and updating data.
 <dt class="sig sig-object py" id="src.repository.contacts.update_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">update_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.schemas.ContactModel" title="src.schemas.ContactModel"><span class="pre">ContactModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.contacts.update_contact" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The update_contact function updates a contact in the database.</dt><dd><dl class="simple">
+<dt>The <strong>update_contact</strong> function updates a contact in the database.</dt><dd><dl class="simple">
 <dt>Args:</dt><dd><p>contact_id (int): The id of the contact to update.
-user (User): The user who is updating the contact. This is used to ensure that only contacts belonging to this user are updated.
-body (ContactModel): A ContactModel object containing all the information for this new contact, including first name, last name, email address and telephone number.</p>
+user (User): The user who is updating the contact. This is used to ensure that only contacts belonging
+to this user are updated.
+body (ContactModel): A ContactModel object containing all the information for this new contact,
+including first name, last name, email address and telephone number.</p>
 </dd>
 </dl>
 </dd>
@@ -305,7 +307,7 @@ body (ContactModel): A ContactModel object containing all the information for th
 <dl class="py function">
 <dt class="sig sig-object py" id="src.repository.users.confirmed_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">confirmed_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#src.repository.users.confirmed_email" title="Permalink to this definition">¶</a></dt>
-<dd><p>The confirmed_email function takes in an email and a database session,
+<dd><p>The <strong>confirmed_email</strong> function takes in an email and a database session,
 and sets the confirmed field of the user with that email to True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -326,7 +328,7 @@ and sets the confirmed field of the user with that email to True.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.repository.users.create_user">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">create_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.schemas.UserModel" title="src.schemas.UserModel"><span class="pre">UserModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.users.create_user" title="Permalink to this definition">¶</a></dt>
-<dd><p>The create_user function creates a new user in the database.</p>
+<dd><p>The <strong>create_user</strong> function creates a new user in the database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -346,7 +348,7 @@ and sets the confirmed field of the user with that email to True.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.repository.users.get_user_by_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">get_user_by_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">User</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#src.repository.users.get_user_by_email" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_user_by_email function takes in an email and a database session,
+<dd><p>The <strong>get_user_by_emai</strong> function takes in an email and a database session,
 and returns the user with that email if it exists. If no such user exists,
 it returns None.</p>
 <dl class="field-list simple">
@@ -368,7 +370,7 @@ it returns None.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.repository.users.update_avatar">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">update_avatar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">User</span></span></span><a class="headerlink" href="#src.repository.users.update_avatar" title="Permalink to this definition">¶</a></dt>
-<dd><p>The update_avatar function updates the avatar of a user.</p>
+<dd><p>The <strong>update_avatar</strong> function updates the avatar of a user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -390,7 +392,7 @@ it returns None.</p>
 <dt class="sig sig-object py" id="src.repository.users.update_token">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">update_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.users.update_token" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The update_token function updates the refresh token for a user in the database.</dt><dd><dl class="simple">
+<dt>The <strong>update_token</strong> function updates the refresh token for a user in the database.</dt><dd><dl class="simple">
 <dt>Args:</dt><dd><p>user (User): The User object to update.
 refresh_token (str): The new refresh token to store in the database.
 db (Session): A connection to our Postgres SQL database.</p>
@@ -424,8 +426,8 @@ db (Session): A connection to our Postgres SQL database.</p>
 <dd><p>The <strong>confirmed_email</strong> function is used to confirm a user’s email address.</p>
 <p>It takes the token from the URL and uses it to get the user’s email address.
 The function then checks if there is a user with that email in our database, and if not, returns an error message.
-If there is a user with that email in our database, we check whether their account has already been confirmed or not.
-If it has been confirmed already, we return another error message saying so; otherwise we call repository_users
+If there is a user with that email in our database, we check whether their account has already been confirmed or not.</p>
+<p>If it has been confirmed already, we return another error message saying so; otherwise we call repository_users
 confirmed_email function which sets the <em>‘confirmed’</em> field of that particular User object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -448,7 +450,7 @@ it has been confirmed</p>
 <dt class="sig sig-object py" id="src.routes.auth.login">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OAuth2PasswordRequestForm</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(OAuth2PasswordRequestForm)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.login" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The login function is used to authenticate a user.</dt><dd><p>It takes the username and password from the request body,
+<dt>The <strong>login</strong> function is used to authenticate a user.</dt><dd><p>It takes the username and password from the request body,
 verifies them against the database, and returns an access token if successful.</p>
 </dd>
 </dl>
@@ -472,7 +474,7 @@ verifies them against the database, and returns an access token if successful.</
 <dt class="sig sig-object py" id="src.routes.auth.refresh_token">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HTTPAuthorizationCredentials</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Security(HTTPBearer)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.refresh_token" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The refresh_token function is used to refresh the access token.</dt><dd><p>The function takes in a refresh token and returns an access_token, a new refresh_token, and the type of token.
+<dt>The <strong>refresh_token</strong> function is used to refresh the access token.</dt><dd><p>The function takes in a refresh token and returns an access_token, a new refresh_token, and the type of token.
 If the user’s current refresh_token does not match what was passed into this function then it will return an error.</p>
 </dd>
 </dl>
@@ -495,7 +497,7 @@ If the user’s current refresh_token does not match what was passed into this f
 <dl class="py function">
 <dt class="sig sig-object py" id="src.routes.auth.request_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">request_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.schemas.RequestEmail" title="src.schemas.RequestEmail"><span class="pre">RequestEmail</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BackgroundTasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.request_email" title="Permalink to this definition">¶</a></dt>
-<dd><p>The request_email function is used to send an email to the user with a link that will allow them
+<dd><p>The <strong>request_email</strong> function is used to send an email to the user with a link that will allow them
 to confirm their account. The function takes in a RequestEmail object, which contains the email of
 the user who wants to confirm their account. It then checks if there is already an unconfirmed
 account associated with that email address, and if so it sends an email containing a confirmation link.</p>
@@ -521,7 +523,7 @@ account associated with that email address, and if so it sends an email containi
 <dt class="sig sig-object py" id="src.routes.auth.signup">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">signup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.schemas.UserModel" title="src.schemas.UserModel"><span class="pre">UserModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BackgroundTasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.signup" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The signup function creates a new user in the database.</dt><dd><p>It takes a UserModel object as input, which is validated by pydantic.
+<dt>The <strong>signup</strong> function creates a new user in the database.</dt><dd><p>It takes a UserModel object as input, which is validated by pydantic.
 The password is hashed using Argon2 and stored in the database.
 An email with an activation link is sent to the user’s email address.</p>
 </dd>
@@ -550,7 +552,7 @@ An email with an activation link is sent to the user’s email address.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.routes.contacts.create_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">create_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.schemas.ContactModel" title="src.schemas.ContactModel"><span class="pre">ContactModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.create_contact" title="Permalink to this definition">¶</a></dt>
-<dd><p>The create_contact function creates a new contact in the database.</p>
+<dd><p>The <strong>create_contact</strong> function creates a new contact in the database.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -572,7 +574,7 @@ An email with an activation link is sent to the user’s email address.</p>
 <dt class="sig sig-object py" id="src.routes.contacts.get_contact_by_birthday">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contact_by_birthday</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.get_contact_by_birthday" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The get_contact_by_birthday function returns the contact with the closest birthday to today.</dt><dd><p>If no contacts are found, a 404 error is returned.</p>
+<dt>The <strong>get_contact_by_birthday</strong> function returns the contact with the closest birthday to today.</dt><dd><p>If no contacts are found, a 404 error is returned.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
@@ -595,7 +597,7 @@ An email with an activation link is sent to the user’s email address.</p>
 <dt class="sig sig-object py" id="src.routes.contacts.get_contact_by_id">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contact_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.get_contact_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The get_contact_by_id function is used to retrieve a contact by its id.</dt><dd><dl class="simple">
+<dt>The <strong>get_contact_by_id</strong> function is used to retrieve a contact by its id.</dt><dd><dl class="simple">
 <dt>The function takes in the following parameters:</dt><dd><ul class="simple">
 <li><p>contact_id: int, the id of the contact to be retrieved.</p></li>
 <li><dl class="simple">
@@ -631,7 +633,7 @@ into functions without having to instantiate them</p>
 <dt class="sig sig-object py" id="src.routes.contacts.get_contacts">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.get_contacts" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The get_contacts function returns a list of contacts.</dt><dd><dl class="simple">
+<dt>The <strong>get_contacts</strong> function returns a list of contacts.</dt><dd><dl class="simple">
 <dt>The function takes in the following parameters:</dt><dd><p>skip (int): The number of items to skip before starting to collect the result set. Default is 0.
 limit (int): The numbers of items to return after skipping ‘skip’ items. Default is 100, max is 1000.
 offset (int): Used for pagination, this will determine how many pages are returned based on limit and offset values.</p>
@@ -661,7 +663,7 @@ offset (int): Used for pagination, this will determine how many pages are return
 <dl class="py function">
 <dt class="sig sig-object py" id="src.routes.contacts.get_contacts_body_field">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contacts_body_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.get_contacts_body_field" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_contacts_body_field function is used to get a list of contacts from the database.
+<dd><p>The <strong>get_contacts_body_field</strong> function is used to get a list of contacts from the database.
 The function takes in a body_field parameter, which is the field that you want to search for in the database.
 It also takes in a body_param parameter, which is what you are searching for within that field.
 The function returns an array of contacts.</p>
@@ -686,12 +688,53 @@ The function returns an array of contacts.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.routes.contacts.remove_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">remove_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.remove_contact" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="simple">
+<dt>The <strong>remove_contact</strong> function removes a contact from the database.</dt><dd><p>The function takes in an integer representing the id of the contact to be removed,
+and returns a dictionary containing information about that contact.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contact_id</strong> – int: Identify the contact to be removed</p></li>
+<li><p><strong>db</strong> – Session: Pass the database session to the repository layer</p></li>
+<li><p><strong>current_user</strong> – User: Get the current user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The contact that was removed</p>
+</dd>
+<dt class="field-odd">Doc-author<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Trelent</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.routes.contacts.update_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">update_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.schemas.ContactModel" title="src.schemas.ContactModel"><span class="pre">ContactModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Path(Ellipsis)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.update_contact" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="simple">
+<dt>The <strong>update_contact</strong> function updates a contact in the database.</dt><dd><p>The function takes an id, body and db as parameters.
+It returns a ContactModel object.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> – ContactModel: Get the data from the request body</p></li>
+<li><p><strong>contact_id</strong> – int: Get the contact_id from the url</p></li>
+<li><p><strong>db</strong> – Session: Access the database</p></li>
+<li><p><strong>current_user</strong> – User: Get the current user from the database</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A ContactModel object</p>
+</dd>
+<dt class="field-odd">Doc-author<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Trelent</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-src.services.auth">
@@ -714,9 +757,10 @@ The function returns an array of contacts.</p>
 <dt class="sig sig-object py" id="src.services.auth.Auth.create_access_token">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expires_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.create_access_token" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The create_access_token function creates a new access token.</dt><dd><dl class="simple">
+<dt>The <strong>create_access_token</strong> function creates a new access token.</dt><dd><dl class="simple">
 <dt>Args:</dt><dd><p>data (dict): A dictionary containing the claims to be encoded in the JWT.
-expires_delta (Optional[float]): An optional parameter specifying how long, in seconds, the access token should last before expiring. If not specified, it defaults to 15 minutes.</p>
+expires_delta (Optional[float]): An optional parameter specifying how long, in seconds,
+the access token should last before expiring. If not specified, it defaults to 15 minutes.</p>
 </dd>
 </dl>
 </dd>
@@ -741,7 +785,7 @@ expires_delta (Optional[float]): An optional parameter specifying how long, in s
 <dl class="py method">
 <dt class="sig sig-object py" id="src.services.auth.Auth.create_email_token">
 <span class="sig-name descname"><span class="pre">create_email_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.create_email_token" title="Permalink to this definition">¶</a></dt>
-<dd><p>The create_email_token function takes a dictionary of data and returns a token.
+<dd><p>The <strong>create_email_token</strong> function takes a dictionary of data and returns a token.
 The token is encoded with the SECRET_KEY, which is stored in the .env file.
 The algorithm used to encode the token is also stored in the .env file.</p>
 <dl class="field-list simple">
@@ -764,7 +808,7 @@ The algorithm used to encode the token is also stored in the .env file.</p>
 <dt class="sig sig-object py" id="src.services.auth.Auth.create_refresh_token">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expires_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.create_refresh_token" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The create_refresh_token function creates a refresh token for the user.</dt><dd><dl class="simple">
+<dt>The <strong>create_refresh_token</strong> function creates a refresh token for the user.</dt><dd><dl class="simple">
 <dt>Args:</dt><dd><p>data (dict): A dictionary containing the user’s id and username.
 expires_delta (Optional[float]): The number of seconds until the token expires, defaults to None.</p>
 </dd>
@@ -791,7 +835,7 @@ expires_delta (Optional[float]): The number of seconds until the token expires, 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.services.auth.Auth.decode_refresh_token">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode_refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.decode_refresh_token" title="Permalink to this definition">¶</a></dt>
-<dd><p>The decode_refresh_token function is used to decode the refresh token.
+<dd><p>The <strong>decode_refresh_token</strong> function is used to decode the refresh token.
 It takes a refresh_token as an argument and returns the email of the user if it’s valid.
 If not, it raises an HTTPException with status code 401 (UNAUTHORIZED) and detail ‘Could not validate credentials’.</p>
 <dl class="field-list simple">
@@ -814,7 +858,7 @@ If not, it raises an HTTPException with status code 401 (UNAUTHORIZED) and detai
 <dt class="sig sig-object py" id="src.services.auth.Auth.get_current_user">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(OAuth2PasswordBearer)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.get_current_user" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The get_current_user function is a dependency that will be used in the</dt><dd><p>UserRouter class. It takes in a token and db session, and returns the user
+<dt>The <strong>get_current_user</strong> function is a dependency that will be used in the</dt><dd><p>UserRouter class. It takes in a token and db session, and returns the user
 associated with that token. If no user is found, it raises an exception.</p>
 </dd>
 </dl>
@@ -838,10 +882,14 @@ associated with that token. If no user is found, it raises an exception.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.services.auth.Auth.get_email_from_token">
 <span class="sig-name descname"><span class="pre">get_email_from_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.get_email_from_token" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_email_from_token function takes a token as an argument and returns the email associated with that token.
-It does this by decoding the JWT using our SECRET_KEY and ALGORITHM, then checking to make sure that it has a scope of ‘email_token’.
-If it does, we return the email from its payload. If not, we raise an HTTPException with status code 401 (Unauthorized) and detail message ‘Invalid scope for token’.
-If there is any other error in decoding or validating the JWT (such as if it’s expired), we raise an HTTPException with status code 422 (Unprocessable eniity) and detail message ‘Invalid token for email verification’.</p>
+<dd><p>The <strong>get_email_from_token</strong> function takes a token as an argument and returns the email associated with that token.
+It does this by decoding the JWT using our SECRET_KEY and ALGORITHM, then checking to make sure that
+it has a scope of ‘email_token’.
+If it does, we return the email from its payload. If not, we raise an HTTPException
+with status code 401 (Unauthorized) and detail message ‘Invalid scope for token’.
+If there is any other error in decoding or validating the JWT (such as if it’s expired),
+we raise an HTTPException with status code 422 (Unprocessable eniity) and
+detail message ‘Invalid token for email verification’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -861,7 +909,7 @@ If there is any other error in decoding or validating the JWT (such as if it’s
 <dl class="py method">
 <dt class="sig sig-object py" id="src.services.auth.Auth.get_password_hash">
 <span class="sig-name descname"><span class="pre">get_password_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.get_password_hash" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_password_hash function takes a password as input and returns the hash of that password.
+<dd><p>The <strong>get_password_hash</strong> function takes a password as input and returns the hash of that password.
 The hash is generated using the pwd_context object, which is an instance of Flask-Bcrypt’s Bcrypt class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -897,7 +945,7 @@ The hash is generated using the pwd_context object, which is an instance of Flas
 <dl class="py method">
 <dt class="sig sig-object py" id="src.services.auth.Auth.verify_password">
 <span class="sig-name descname"><span class="pre">verify_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plain_password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hashed_password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.verify_password" title="Permalink to this definition">¶</a></dt>
-<dd><p>The verify_password function takes a plain-text password and hashed
+<dd><p>The <strong>verify_password</strong> function takes a plain-text password and hashed
 password as arguments. It then uses the pwd_context object to verify that the
 plain-text password matches the hashed one.</p>
 <dl class="field-list simple">
@@ -930,7 +978,7 @@ is entered by a user</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.services.cloud_image.CloudImage.generate_name_avatar">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_name_avatar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.cloud_image.CloudImage.generate_name_avatar" title="Permalink to this definition">¶</a></dt>
-<dd><p>The generate_name_avatar function takes an email address as input and returns a unique avatar name.
+<dd><p>The <strong>generate_name_avatar</strong> function takes an email address as input and returns a unique avatar name.
 The function uses the first 12 characters of the SHA256 hash of the email address to generate a unique string,
 which is then used as part of an avatar name.</p>
 <dl class="field-list simple">
@@ -949,7 +997,7 @@ which is then used as part of an avatar name.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.services.cloud_image.CloudImage.get_url_for_avatar">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_url_for_avatar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.cloud_image.CloudImage.get_url_for_avatar" title="Permalink to this definition">¶</a></dt>
-<dd><p>The get_url_for_avatar function takes in a public_id and an r (which is the result of a cloudinary.api.resource call)
+<dd><p>The <strong>get_url_for_avatar</strong> function takes in a public_id and an r (which is the result of a cloudinary.api.resource call)
 and returns the URL for that avatar image, which will be used to display it on the page.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -970,7 +1018,7 @@ and returns the URL for that avatar image, which will be used to display it on t
 <dl class="py method">
 <dt class="sig sig-object py" id="src.services.cloud_image.CloudImage.upload">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.cloud_image.CloudImage.upload" title="Permalink to this definition">¶</a></dt>
-<dd><p>The upload function takes a file and public_id as arguments.
+<dd><p>The <strong>upload</strong> function takes a file and public_id as arguments.
 The function then uploads the file to Cloudinary using the public_id provided.
 If no public_id is provided, one will be generated automatically.</p>
 <dl class="field-list simple">
@@ -998,9 +1046,11 @@ If no public_id is provided, one will be generated automatically.</p>
 <dt class="sig sig-object py" id="src.services.email.send_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.services.email.</span></span><span class="sig-name descname"><span class="pre">send_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EmailStr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.email.send_email" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>The send_email function sends an email to the user with a link to confirm their email address.</dt><dd><dl class="simple">
+<dt>The <strong>send_email</strong> function sends an email to the user with a link to confirm their email address.</dt><dd><dl class="simple">
 <dt>The function takes in three parameters:</dt><dd><p>-email: EmailStr, the user’s email address that they entered when signing up for an account.
--username: str, the username of the user who is trying to sign up for an account. This will be used in conjunction with host (see below) and token_verification (see below) as part of a URL that will be sent via email to verify their identity and allow them to access into our application.</p>
+-username: str, the username of the user who is trying to sign up for an account.
+This will be used in conjunction with host (see below) and token_verification (see below) as part
+of a URL that will be sent via email to verify their identity and allow them to access into our application.</p>
 </dd>
 </dl>
 </dd>

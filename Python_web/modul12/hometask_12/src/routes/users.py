@@ -14,7 +14,7 @@ router = APIRouter(prefix="/users", tags=["users"])
 @router.get("/me/", response_model=UserResponse)
 async def read_users_me(current_user: User = Depends(auth_service.get_current_user)):
     """
-    The read_users_me function is a GET endpoint that returns the current user's information.
+    The **read_users_me** function is a GET endpoint that returns the current user's information.
     It uses the auth_service to get the current user, and then returns it.
 
     :param current_user: User: Get the current user
@@ -28,7 +28,7 @@ async def read_users_me(current_user: User = Depends(auth_service.get_current_us
 async def update_avatar_user(file: UploadFile = File(), current_user: User = Depends(auth_service.get_current_user),
                              db: Session = Depends(get_db)):
     """
-    The update_avatar_user function updates the avatar of a user.
+    The **update_avatar_user** function updates the avatar of a user.
 
     :param file: UploadFile: Get the file from the request
     :param current_user: User: Get the current user
